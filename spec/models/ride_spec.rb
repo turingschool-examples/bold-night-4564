@@ -32,7 +32,7 @@ RSpec.describe Ride, type: :model do
       end
     end
   end
-  #
+
   # describe 'instance methods' do
   #   describe '#' do
   #   end
