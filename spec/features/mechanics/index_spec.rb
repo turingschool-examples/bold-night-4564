@@ -17,7 +17,7 @@ RSpec.describe 'mechanics index page' do
 
   it 'displays each mechanic name and years experience' do
     visit '/mechanics'
-
+    
     expect(page).to have_content("Name: #{@mechanic_1.name}, Years of Experience: #{@mechanic_1.years_of_experience}")
     expect(page).to have_content("Name: #{@mechanic_2.name}, Years of Experience: #{@mechanic_2.years_of_experience}")
     expect(page).to have_content("Name: #{@mechanic_3.name}, Years of Experience: #{@mechanic_3.years_of_experience}")
