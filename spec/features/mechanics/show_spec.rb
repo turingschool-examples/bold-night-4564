@@ -8,10 +8,11 @@ RSpec.describe 'The mechanics show page' do
     @mechanic1 = Mechanic.create!(name: 'Joe Schmo', years_of_experience: 10)
     @mechanic2 = Mechanic.create!(name: 'Walter White', years_of_experience: 4)
 
-    @ride1 = Ride.create!(name: 'Ferris Wheel', thrill_rating: 4, open: true)
-    @ride2 = Ride.create!(name: 'Roller Coaster', thrill_rating: 10, open: true)
-    @ride3 = Ride.create!(name: 'Broken Gravitron', thrill_rating: 3, open: false)
-    @ride4 = Ride.create!(name: 'Carousel', thrill_rating: 1, open: true)
+    @disney = AmusementPark.create!(name: 'Disney World', price: 125)
+    @ride1 = @disney.rides.create!(name: 'Ferris Wheel', thrill_rating: 4, open: true)
+    @ride2 = @disney.rides.create!(name: 'Roller Coaster', thrill_rating: 10, open: true)
+    @ride3 = @disney.rides.create!(name: 'Broken Gravitron', thrill_rating: 3, open: false)
+    @ride4 = @disney.rides.create!(name: 'Carousel', thrill_rating: 1, open: true)
 
     @mechanic1.work_orders.create!(ride: @ride1)
     @mechanic1.work_orders.create!(ride: @ride2)

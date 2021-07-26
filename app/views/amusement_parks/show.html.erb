@@ -1,0 +1,6 @@
+<h1><%= @park.name  %></h1>
+<h3>Price: <%= number_to_currency(@park.price, precision:2) %></h3>
+<% @alpha.each do |ride| %>
+  <h4><%= ride.name %></h4>
+<% end %>
+<h6>Average Thrill Rating: <%= @park.average_thrill_rating  %>/10</h6>
