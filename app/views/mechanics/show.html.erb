@@ -6,3 +6,12 @@
 <% @mechanic.rides.open_rides.order_thrill.each do |ride| %>
 <p><%= ride.name %></p>
 <% end %>
+
+<div>
+<h3>Add a Ride to Workload</h3>
+<%= form_with url: "/mechanics/#{@mechanic.id}/rides/#{@ride.id}", method: :post, local: { params: :ride_id }, local: true do |f| %>
+  <%= f.label :search, 'Ride ID:' %>
+  <%= f.number_field :search %>
+  <%= f.submit "Add Ride" %>
+  <% end %>
+</div>
