@@ -12,14 +12,26 @@ RSpec.describe Ride, type: :model do
     # it { should validate_inclusion_of(:open), inclusion: [true, false] }
   end
 
-  # before :each do
-  #
-  # end
-  #
-  # describe 'class methods' do
-  #   describe '.' do
-  #   end
-  # end
+  before :each do
+    @ride1 = Ride.create!(name: 'Ferris Wheel', thrill_rating: 1, open: true)
+    @ride2 = Ride.create!(name: 'Free Fall', thrill_rating: 8, open: true)
+    @ride3 = Ride.create!(name: 'Wooden Roller Coaster', thrill_rating: 6, open: false)
+    @ride4 = Ride.create!(name: 'Tilt-a-Whirl', thrill_rating: 7, open: true)
+  end
+
+  describe 'class methods' do
+    describe '.only_open' do
+      it 'can display only OPEN rides' do
+        expect(Ride.only_open).to eq([@ride1, @ride2, @ride4])
+      end
+    end
+
+    describe '.desc_thrill' do
+      it 'can display rides in descending thrill order (most thrills first)' do
+        expect(Ride.desc_thrill).to eq([@ride2, @ride4, @ride3, @ride1])
+      end
+    end
+  end
   #
   # describe 'instance methods' do
   #   describe '#' do
