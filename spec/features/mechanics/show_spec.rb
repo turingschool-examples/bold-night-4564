@@ -30,6 +30,11 @@ RSpec.describe 'the mechanics show' do
       thrill_rating: 10,
       open: false
     )
+    @ride_5 = Ride.create!(
+      name: 'Mars Attack!',
+      thrill_rating: 6,
+      open: true
+    )
 
     MechanicRide.create!(mechanic: @mechanic_1, ride: @ride_1)
     MechanicRide.create!(mechanic: @mechanic_1, ride: @ride_2)
@@ -59,5 +64,15 @@ RSpec.describe 'the mechanics show' do
 
     expect('The Void').to appear_before('Iron Rattler')
     expect('Iron Rattler').to appear_before('Spunky Spin Bucket')
+  end
+
+  it 'can add a new ride to mechanics workload' do
+    visit "/mechanics/#{@mechanic_1.id}"
+
+    fill_in('Ride Id:', with: "#{@ride_5.id}")
+    click_button('Submit')
+
+    expect(current_path).to eq("/mechanics/#{@mechanic_1.id}")
+    expect(page).to have_content('Mars Attack!')
   end
 end
