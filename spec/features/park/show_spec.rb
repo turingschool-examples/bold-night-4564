@@ -20,19 +20,20 @@ RSpec.describe 'the park show page' do
   end
 
   it 'has the names of its rides, sorted alphabetically' do
-    #all rides from park are there
-    expect(page).to have_content(@ride1.name)
-    expect(page).to have_content(@ride2.name)
-    expect(page).to have_content(@ride3.name)
-    #not ride 4 since it doesnt belong to park
-    expect(page).to_not have_content(@ride4.name)
-    #correct order
-    expect(@ride4).to appear_before(@ride3)
-    expect(@ride3).to appear_before(@ride1)
-    expect(@ride1).to appear_before(@ride2)
+    within "div#rides" do
+      #all rides from park are there
+      expect(page).to have_content(@ride1.name)
+      expect(page).to have_content(@ride2.name)
+      expect(page).to have_content(@ride3.name)
+      #not ride 4 since it doesnt belong to park
+      expect(page).to_not have_content(@ride4.name)
+      #correct order
+      expect(@ride3.name).to appear_before(@ride1.name)
+      expect(@ride1.name).to appear_before(@ride2.name)
+    end
   end
 
   it 'has the average thrill rating of the parks rides' do
-    expect(page).to have_content("Average thrill rating of rides: 8/10")
+    expect(page).to have_content("Average thrill rating of rides: 8.0/10")
   end
 end
