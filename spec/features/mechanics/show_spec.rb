@@ -10,6 +10,7 @@ RSpec.describe 'mechanics show page' do
     @ride_4 = Ride.create!(name: 'The Barnstormer', thrill_rating: 9, open: true)
     @ride_5 = Ride.create!(name: 'Wildlife Express', thrill_rating: 5, open: false)
     @ride_6 = Ride.create!(name: 'Laugh Floor', thrill_rating: 6, open: true)
+    @ride_7 = Ride.create!(name: 'Mad Tea Party', thrill_rating: 4, open: true)
 
     RideMechanic.create!(mechanic: @mechanic_1, ride: @ride_1)
     RideMechanic.create!(mechanic: @mechanic_1, ride: @ride_2)
@@ -25,7 +26,7 @@ RSpec.describe 'mechanics show page' do
     expect(page).to have_content(@mechanic_1.name)
     expect(page).to have_content(@mechanic_1.years_of_experience)
   end
-
+  #user story 2
   it 'displays all open rides that the mechanic is working on' do
     visit "/mechanics/#{@mechanic_1.id}"
 
@@ -36,18 +37,23 @@ RSpec.describe 'mechanics show page' do
     expect(page).to_not have_content(@ride_5.name)
     expect(page).to have_content(@ride_6.name)
   end
-
+  #user story 2
   it 'displays the rides by thrill raiting in desc order' do
     visit "/mechanics/#{@mechanic_1.id}"
-
-    @ride_1 = Ride.create!(name: 'Big Thunder', thrill_rating: 8, open: true)
-    @ride_2 = Ride.create!(name: 'Mine Train', thrill_rating: 2, open: true)
-
-    @ride_4 = Ride.create!(name: 'The Barnstormer', thrill_rating: 9, open: true)
-    @ride_6 = Ride.create!(name: 'Laugh Floor', thrill_rating: 6, open: true)
 
     expect(@ride_4.name).to appear_before(@ride_2.name)
     expect(@ride_2.name).to_not appear_before(@ride_1.name)
     expect(@ride_6.name).to appear_before(@ride_2.name)
+  end
+  #user story 3
+  it 'has a form to add an exisiting ride to mechanics list' do
+    visit "/mechanics/#{@mechanic_1.id}"
+
+    fill_in 'Ride Id:', with: "#{@ride_7.id}"
+    click_on 'Add'
+    save_and_open_page
+    expect(current_path).to eq("/mechanics/#{@mechanic_1.id}")
+    expect(@ride_7.name).to appear_before(@ride_2.name)
+    expect(@ride_7.name).to_not appear_before(@ride_6.name)
   end
 end

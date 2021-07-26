@@ -1,7 +1,15 @@
 <h2><%= @mechanic.name %></h2>
 <h3>Years of Experience: <%= @mechanic.years_of_experience  %></h3>
 <br>
-<h3>Rides currently working on</h3>
+<h3>Current rides they’re working on: </h3>
 <% @mechanic.open_rides_desc_by_thrill_rating.each do |ride| %>
   <p><%= ride.name %></p>
+<% end %>
+<br>
+<h3>Add a ride to workload:</h3>
+<%= form_with url: "/mechanics/#{@mechanic.id}/ride", method: :post, local: true do |f| %>
+  <%= f.label :ride_id, "Ride Id:" %>
+  <%= f.text_field :ride_id %>
+  <br>
+  <%= f.submit 'Add' %>
 <% end %>
