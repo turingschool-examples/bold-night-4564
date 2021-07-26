@@ -17,4 +17,20 @@ RSpec.describe 'Mechanics show page' do
     expect(page).to have_content('6 Years of Experience')
   end
   
+  it 'displays open rides that mechanic is working on' do
+    visit "/mechanics/#{@mech_1.id}"
+    expect(page).to have_content('The Whirly Dirly')
+    expect(page).to have_content('Thrill Rating: 10')
+    expect(page).to have_content('Vomit World')
+    expect(page).to have_content('Thrill Rating: 30')
+  end
+
+  it 'displays only open rides in order of thrills' do
+    visit "/mechanics/#{@mech_1.id}"
+    expect(page).to_not have_content('Frankenpants')
+
+    within('#rides') do
+      expect(@ride_3.name).to appear_before(@ride_1.name)
+    end
+  end
 end
