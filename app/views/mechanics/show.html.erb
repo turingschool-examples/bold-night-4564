@@ -2,6 +2,11 @@
 <h3> Working with us for <%= @mechanic.years_of_experience %> years! </h3>
 
 <h3>Assign Ride to <%= @mechanic.name %>: </h3>
+<%= form_with url: "/mechanics/#{@mechanic.id}/maintenances", local: true do |f| %>
+  <%= f.label :ride_id %>
+  <%= f.number_field :ride_id %>
+  <%= f.submit "Submit" %>
+<% end %>
 
 <h2>Assigned Rides: </h2>
 <% @mechanic.order_by_thrill_rating.each do |ride| %>
