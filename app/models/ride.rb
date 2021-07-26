@@ -15,6 +15,6 @@ class Ride < ApplicationRecord
   end
 
   def self.average_thrill_rating
-    Ride.average(:thrill_rating).to_f.round(1)
+    Ride.average(:thrill_rating).to_f.round(1) || 0
   end
 end
