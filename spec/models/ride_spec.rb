@@ -2,14 +2,16 @@ require 'rails_helper'
 
 RSpec.describe Ride do
   describe 'relationships' do
+    it { should belong_to(:amusement_park) }
     it { should have_many(:ride_mechanics) }
     it { should have_many(:mechanics).through(:ride_mechanics) }
   end
 
   before :each do
-    @ride_1 = Ride.create!(name: 'Twisted Sister', thrill_rating: 6, open: true)
-    @ride_2 = Ride.create!(name: 'Extreme', thrill_rating: 10, open: false)
-    @ride_3 = Ride.create!(name: 'Whitesnake', thrill_rating: 3, open: true)
+    @amusement_park = AmusementPark.create!(name: 'Hair Metal', admission_price: 50)
+    @ride_1 = Ride.create!(name: 'Twisted Sister', thrill_rating: 6, open: true, amusement_park_id: @amusement_park.id)
+    @ride_2 = Ride.create!(name: 'Extreme', thrill_rating: 10, open: false, amusement_park_id: @amusement_park.id)
+    @ride_3 = Ride.create!(name: 'Whitesnake', thrill_rating: 3, open: true, amusement_park_id: @amusement_park.id)
   end
 
   describe 'class methods' do
