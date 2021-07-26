@@ -38,9 +38,7 @@ RSpec.describe Ride do
     )
   end
 
-  let!(:rides) { [frog_hopper, fahrenheit, kiss_raise] }
   let!(:open_rides) { [frog_hopper, fahrenheit] }
-  let!(:closed_rides) { [kiss_raise] }
 
   describe 'class methods' do
     describe '.open' do
