@@ -28,5 +28,8 @@ RSpec.describe 'Mechanic Show' do
       expect(page).to have_content(@ride_2.name)
       expect(page).to have_content(@ride_3.name)
     end   
+
+    it 'displays rides that are open in order of Thrill rating' do
+    end
   end  
 end
