@@ -5,9 +5,9 @@ RSpec.describe 'mechanic show page' do
     it 'displays the mechanics name, years of experience, and names of rides they are working on' do
       mechanic = create(:mechanic)
       ride1 = Ride.create!(name: 'Ferris Wheel', thrill_rating: 3, open: true)
-      ride1 = Ride.create!(name: 'Roller Coaster', thrill_rating: 6, open: true)
-      mechanic_ride1 = MechanicRide.create(ride_id: rilde1.id, mechanic_id: mechanic.id)
-      mechanic_ride2 = MechanicRide.create(ride_id: rilde2.id, mechanic_id: mechanic.id)
+      ride2 = Ride.create!(name: 'Roller Coaster', thrill_rating: 6, open: true)
+      mechanic_ride1 = MechanicRide.create(ride_id: ride1.id, mechanic_id: mechanic.id)
+      mechanic_ride2 = MechanicRide.create(ride_id: ride2.id, mechanic_id: mechanic.id)
 
       visit "/mechanics/#{mechanic.id}"
 
