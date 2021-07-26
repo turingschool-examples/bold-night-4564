@@ -27,5 +27,18 @@ RSpec.describe 'Mechanics Show Page' do
     expect(page).to_not have_content(mech_2.years_of_experience)
   end
 
-  it 'lists rides by thrill rating in descending order'
+  it 'lists open rides by thrill rating in descending order' do
+    mech_1 = Mechanic.create!(name: 'Antonio King', years_of_experience: 8)
+    mech_2 = Mechanic.create!(name: 'Sean King', years_of_experience: 6)
+
+    ride_1 = mech_1.rides.create!(name: 'Octothrope', thrill_rating: 7, open: true)
+    ride_2 = mech_1.rides.create!(name: 'Sidewinder', thrill_rating: 9, open: true)
+    ride_3 = mech_1.rides.create!(name: 'Clown Maze', thrill_rating: 2, open: false)
+    ride_4 = mech_1.rides.create!(name: 'Twister', thrill_rating: 6, open: true)
+
+    visit "/mechanics/#{mech_1.id}"
+
+    expect(ride_2.name).to appear_before(ride_1.name)
+    expect(ride_1.name).to appear_before(ride_4.name)
+  end
 end
