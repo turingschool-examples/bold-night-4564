@@ -1,6 +1,2 @@
-class MechanicsController < ApplicationController
-
-  def index
-  end
-
+class MaintenancesController < ApplicationController
 end
