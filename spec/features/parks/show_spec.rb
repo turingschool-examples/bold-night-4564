@@ -38,6 +38,6 @@ RSpec.describe 'Park show page' do
 
     visit "/parks/#{park.id}"
 
-    expect(page).to have_content("Average thirll rating: #{park.average_thrill_rating}")
+    expect(page).to have_content("Average Thrill Rating of Rides: #{park.average_thrill_rating}/10")
   end
 end

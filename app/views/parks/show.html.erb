@@ -3,7 +3,9 @@
 
 <h3>Rides that are at that theme park:</h3>
 <% @park.rides_by_name.each do |ride| %>
-  <%= ride.name %>
+<ul>
+  <li><%= ride.name %></li>
+</ul>
 <% end %>
 
-<h3>Average thirll rating: <%= @park.average_thrill_rating %></h3>
+<h3>Average Thrill Rating of Rides: <%= @park.average_thrill_rating %>/10</h3>
