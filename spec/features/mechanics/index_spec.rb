@@ -1,12 +1,12 @@
 require 'rails_helper'
 
 RSpec.describe '/mechanics/index.html.erb' do
+  let!(:jim) { Mechanic.create!(name: 'Jim', years_of_experience: 10) }
+  let!(:john) { Mechanic.create!(name: 'John', years_of_experience: 5) }
+  let!(:joe) { Mechanic.create!(name: 'Joe', years_of_experience: 3) }
+
   describe 'as a user' do
     describe 'when I visit the mechanics index page' do
-      let!(:jim) { Mechanic.create!(name: 'Jim', years_of_experience: 10) }
-      let!(:john) { Mechanic.create!(name: 'John', years_of_experience: 5) }
-      let!(:joe) { Mechanic.create!(name: 'Joe', years_of_experience: 3) }
-
       before do
         visit '/mechanics/'
       end
