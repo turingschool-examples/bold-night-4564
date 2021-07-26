@@ -6,6 +6,7 @@ RSpec.describe Mechanic, type: :feature do
     @mechanic2 = Mechanic.create!(name: 'Jonathan Sims', years_of_experience: 6)
     @mechanics = Mechanic.all
   end
+  
   # Story 1 - Mechanic Index Page
   # As a user,
   # When I visit the mechanics index page
