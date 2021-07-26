@@ -15,4 +15,38 @@ RSpec.describe Mechanic do
       expect(Mechanic.average_experience).to eq(8)
     end
   end
+
+  describe 'instance methods' do
+    it 'shows open rides being worked on' do
+      mech_1 = Mechanic.create!(name: 'Bubbles', years_of_experience: 5)
+      mech_2 = Mechanic.create!(name: 'Ricky', years_of_experience: 15)
+
+      ride_1 = Ride.create!(name: "Steve French", thrill_rating: 5, open: true)
+      ride_2 = Ride.create!(name: "Z-town", thrill_rating: 9, open: true)
+      ride_3 = Ride.create!(name: "Creek", thrill_rating: 6, open: false)
+
+
+      maint_1 = Maintenence.create!(mechanic: mech_1, ride: ride_1)
+      maint_2 = Maintenence.create!(mechanic: mech_1, ride: ride_2)
+      maint_3 = Maintenence.create!(mechanic: mech_1, ride: ride_3)
+
+      expect(mech_1.working_open_rides).to eq([ride_1, ride_2])
+    end
+
+    it 'lists open rides in descending order' do
+      mech_1 = Mechanic.create!(name: 'Bubbles', years_of_experience: 5)
+      mech_2 = Mechanic.create!(name: 'Ricky', years_of_experience: 15)
+
+      ride_1 = Ride.create!(name: "Steve French", thrill_rating: 5, open: true)
+      ride_2 = Ride.create!(name: "Z-town", thrill_rating: 9, open: true)
+      ride_3 = Ride.create!(name: "Creek", thrill_rating: 6, open: false)
+
+
+      maint_1 = Maintenence.create!(mechanic: mech_1, ride: ride_1)
+      maint_2 = Maintenence.create!(mechanic: mech_1, ride: ride_2)
+      maint_3 = Maintenence.create!(mechanic: mech_1, ride: ride_3)
+
+      ex
+    end
+  end
 end

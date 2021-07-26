@@ -7,7 +7,7 @@ RSpec.describe 'mechanic show page' do
 
     ride_1 = Ride.create!(name: "Steve French", thrill_rating: 5, open: true)
     ride_2 = Ride.create!(name: "Z-town", thrill_rating: 9, open: true)
-    ride_3 = Ride.create!(name: "Z-town", thrill_rating: 6, open: false)
+    ride_3 = Ride.create!(name: "Creek", thrill_rating: 6, open: false)
 
 
     maint_1 = Maintenence.create!(mechanic: mech_1, ride: ride_1)
