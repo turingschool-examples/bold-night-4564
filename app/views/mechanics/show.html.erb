@@ -1,0 +1,17 @@
+<h4> <%= @mechanic.name %></h4>
+<p>Years of experience: <%= @mechanic.years_of_experience %></p>
+
+<div id="current_work">
+  <h5>Currently working on:</h5>
+  <% @mech_rides.each do |ride| %>
+    <p><%= ride.name %></p>
+    <p><%= ride.thrill_rating %></p>
+  <% end %>
+</div>
+
+<div id="add_ride">
+  <%= bootstrap_form_tag url: "/mechanics/#{@mechanic.id}/mech_rides", method: :POST do |form| %>
+    <%= form.number_field :ride_id %>
+    <%= form.submit 'add ride to mechanic' %>
+  <% end %>
+</div>
