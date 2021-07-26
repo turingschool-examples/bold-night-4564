@@ -13,4 +13,15 @@ RSpec.describe 'Amusement Park Show Page' do
     expect(page).to have_content(@amusement_park.name)
     expect(page).to have_content(@amusement_park.admission_price)
   end
+
+  it 'shows amusement park rides in alphabetical order' do
+    expect(@ride_2.name).to appear_before(@ride_4.name)
+    expect(@ride_4.name).to appear_before(@ride_1.name)
+    expect(@ride_1.name).to appear_before(@ride_3.name)
+  end
+
+  it 'shows averge thrill rating for amusement park' do
+    save_and_open_page
+    expect(page).to have_content('Average Thrill Rating of Rides: 6.5/10')
+  end
 end
