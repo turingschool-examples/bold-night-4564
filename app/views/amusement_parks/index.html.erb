@@ -1,0 +1,3 @@
+<% @parks.each do |park| %>
+<%= link_to park.name, "/amusement_parks/#{park.id}", class: "btn btn-primary"%>
+<% end %>

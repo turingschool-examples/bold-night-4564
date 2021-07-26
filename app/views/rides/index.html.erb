@@ -1,0 +1,5 @@
+<h1>All Rides</h1>
+<% @rides.each do |ride| %>
+  <h2><%= ride.name  %></h2>
+  <h2>Thrill Rating:<%= ride.thrill_rating  %></h2>
+<% end %>

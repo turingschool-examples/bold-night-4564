@@ -1,9 +1,10 @@
 <h3><%= @mechanic.name  %></h3>
-<h4><%= @mechanic.years_of_experience  %></h4>
-<% @rides.each do |ride|  %>
-  <h6> All open rides for this mechanic, ordered by thrill rating:
-    <%= ride.name %>
-  </h6>
+
+<h4>Years of experience: <%= @mechanic.years_of_experience  %></h4>
+<h6> All open rides for this mechanic, ordered by thrill rating:  </h6>
+  <% @rides.each do |ride|  %>
+    <ul>
+    <li><%= ride.name %></li></ul>
 <% end %>
 
 <h3><%="Add a ride for #{@mechanic.name}"%></h3>
