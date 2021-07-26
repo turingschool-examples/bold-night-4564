@@ -1,0 +1,15 @@
+<p>
+  Name: <%= @amusement_park.name %><br>
+  Admission Price: <%= number_to_currency(@amusement_park.price) %>
+</p>
+
+<p>
+  Rides:<br>
+  <% @amusement_park.rides.order_by_name.each do |ride| %>
+    <%= ride.name %><br>
+  <% end %>
+</p>
+
+<p>
+  Average Thrill Rating of Rides: <%= @amusement_park.rides.average_thrill_rating %>/10
+</p>
