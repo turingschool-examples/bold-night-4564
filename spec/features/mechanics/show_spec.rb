@@ -49,7 +49,6 @@ RSpec.describe 'Mechanics show page', type: :feature do
     fill_in :search, with: "#{@ride_6.id}"
     click_button "Add Ride"
 
-    save_and_open_page
     expect(page).to have_content(@ride_6.name)
     expect(@ride_6.name).to_not appear_before(@ride_4.name)
     expect(@ride_6.name).to appear_before("Add ride to credentials")
@@ -66,7 +65,6 @@ RSpec.describe 'Mechanics show page', type: :feature do
     fill_in :search, with: "#{@ride_6.id}"
     click_button "Add Ride"
 
-    save_and_open_page
     expect(page).to have_content(@ride_6.name)
     expect(@ride_6.name).to appear_before(@ride_5.name)
     expect(@ride_6.name).to appear_before(@ride_1.name)
