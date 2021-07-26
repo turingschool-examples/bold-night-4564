@@ -10,7 +10,7 @@ RSpec.describe 'Mechanics index page', type: :feature do
   # User Story 1
   it 'displays All Mechanics header, attributes, and average years of experience' do
     visit "/mechanics"
-    save_and_open_page
+
     expect(page).to have_content("All Mechanics")
     expect(page).to have_content(@mechanic_1.name)
     expect(page).to have_content(@mechanic_3.years_of_experience)
