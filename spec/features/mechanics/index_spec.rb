@@ -2,9 +2,9 @@ require "rails_helper"
 
 RSpec.describe 'the mechanics index' do
   before(:each) do
-    @mechanic_1 = Mechanic.create(name: 'Nick McIntyre', years_of_experience: 10)
-    @mechanic_2 = Mechanic.create(name: 'Lee Hopper', years_of_experience: 5)
-    @mechanic_3 = Mechanic.create(name: 'Cody Eldredge', years_of_experience: 7)
+    @mechanic_1 = Mechanic.create!(name: 'Nick McIntyre', years_of_experience: 10)
+    @mechanic_2 = Mechanic.create!(name: 'Lee Hopper', years_of_experience: 5)
+    @mechanic_3 = Mechanic.create!(name: 'Cody Eldredge', years_of_experience: 7)
   end
 
   it 'lists all mechanic names and years of experience' do
