@@ -1,6 +1,11 @@
 require "rails_helper"
 
 RSpec.describe Mechanic do
+  describe 'relationships' do
+    it { should have_many(:mechanic_rides) }
+    it { should have_many(:rides).through(:mechanic_rides) }
+  end
+
   describe 'class methods' do
     describe '.average_years_of_experience' do
       context 'when there are no mechanics' do
