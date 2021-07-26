@@ -31,7 +31,7 @@ RSpec.describe 'The Mechanics index page' do
       mechanic2 = Mechanic.create!(name: 'Leia Organa', years_of_experience: 14)
 
       visit "/mechanics"
-save_and_open_page
+
       expect(page).to have_content('Average years of experience across all mechanics: 13')
     end
   end
