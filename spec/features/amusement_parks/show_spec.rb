@@ -34,23 +34,8 @@ RSpec.describe 'amusement park show page' do
 
       visit "/amusementparks/#{amusement_park.id}"
       rides = amusement_park.rides
-
+      save_and_open_page
       expect(page).to have_content("Average Thrill Rating of Rides: #{rides.average_thrill_rating}/10")
-      # As a visitor,
-      # When I visit an amusement park’s show page
-      # I see the name and price of admissions for that amusement park
-      # And I see the names of all the rides that are at that theme park listed in alphabetical order
-      # And I see the average thrill rating of this amusement park’s rides
-      # Ex: Hershey Park
-      #    Admissions: $50.00
-      #
-      #    Rides:
-      #           1. Lightning Racer
-      #           2. Storm Runner
-      #           3. The Great Bear
-      #    Average Thrill Rating of Rides: 7.8/10
-      #
-      # Note: You may have to make new migrations for this story
     end
   end
 end
