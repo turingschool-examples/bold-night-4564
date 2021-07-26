@@ -1,0 +1,17 @@
+<h1>Mechanic: <%= @mechanic.name %></h1>
+<p><%= @mechanic.years_of_experience %></p>
+
+<h3>Rides Being Worked On:</h3>
+<% @mechanic.open_rides.each do |r| %>
+ <%= r.name %>
+<% end %>
+
+<h3>Add A Ride</h3>
+
+<%= form_tag "/mechanics/#{@mechanic.id}/maintenences", method: :post do %>
+
+  <%= label_tag :ride_id, 'Ride ID' %>
+  <%= text_field_tag :ride_id %><br>
+  <%= submit_tag 'Submit' %>
+
+<% end %>
