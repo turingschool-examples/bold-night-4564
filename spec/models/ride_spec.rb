@@ -54,7 +54,7 @@ RSpec.describe Ride do
         ride2 = Ride.create!(name: 'Roller Coaster', thrill_rating: 9, open: true, amusement_park_id: amusement_park.id)
         ride3 = Ride.create!(name: 'Merry Go Round', thrill_rating: 6, open: true, amusement_park_id: amusement_park.id)
 
-        expect(Ride.average_thrill_rating).to eq(6)
+        expect(Ride.average_thrill_rating).to eq(6.0)
       end
     end
   end
