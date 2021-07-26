@@ -33,6 +33,7 @@ gem 'jbuilder', '~> 2.5'
 
 # Reduces boot times through caching; required in config/boot.rb
 gem 'bootsnap', '>= 1.1.0', require: false
+gem 'json', '>= 2.0.0'
 
 group :development, :test do
   gem 'rspec-rails'
@@ -41,6 +42,7 @@ group :development, :test do
   gem 'pry'
   gem 'simplecov'
   gem 'shoulda-matchers', '~> 3.1'
+  gem 'orderly'
 end
 
 group :development do

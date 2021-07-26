@@ -1,15 +1,5 @@
 require 'rails_helper'
-
-RSpec.describe Mechanic, type: :model do
-  describe 'relationships' do
-    it { should have_many(:maintenances) }
-    it { should have_many(:rides).through(:maintenances) }
-  end
-
-  # describe 'validations' do
-  #   it { should validate_presence_of(:) }
-  # end
-
+RSpec.describe 'shows the index feature page of the mechanics' do
   before :each do
     @amusement_park1 = AmusementPark.create!(name: "Elitches", price_of_admission: 50)
     @amusement_park2 = AmusementPark.create!(name: "Lake Side", price_of_admission: 30)
@@ -31,23 +21,26 @@ RSpec.describe Mechanic, type: :model do
     @maintenance4 = Maintenance.create!(mechanic_id: @mechanic2.id, ride_id: @ride3.id)
     @maintenance5 = Maintenance.create!(mechanic_id: @mechanic2.id, ride_id: @ride2.id)
     @maintenance6 = Maintenance.create!(mechanic_id: @mechanic3.id, ride_id: @ride1.id)
-    @maintenance7 = Maintenance.create!(mechanic_id: @mechanic1.id, ride_id: @ride1.id)
-    @maintenance8 = Maintenance.create!(mechanic_id: @mechanic1.id, ride_id: @ride2.id)
+
+    visit "/mechanics"
   end
 
-  describe 'class methods' do
-   describe '.average_work' do
-      it 'can determien the average of the years ecperience column' do
-        expect(Mechanic.average_work).to eq(5.25)
-      end
+  it 'can visit the correct path' do
+    expect(current_path).to eq("/mechanics")
+  end
+
+  it 'shows a page with all the mechanics names and their years of experience' do
+    expect(page).to have_content("All Mechanics")
+
+    mechanics = [@mechanic1,@mechanic2, @mechanic3, @mechanic4]
+
+    mechanics.each do |mechanic|
+      expect(page).to have_content(mechanic.name)
+      expect(page).to have_content(mechanic.years_of_experience)
     end
   end
 
-  describe 'instance methods' do
-    describe '#rank_open_rides' do
-      it 'can list all the open rides from most thrills to the least' do
-        expect(@mechanic1.rank_open_rides).to eq([@ride3, @ride1, @ride2])
-      end
-    end
+  it 'shows the average years of all the mechanics' do
+    expect(page).to have_content("Average years of work Experience: 5.25 years") 
   end
 end
