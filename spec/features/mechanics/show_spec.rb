@@ -41,4 +41,43 @@ RSpec.describe 'Mechanics Show Page' do
     expect(ride_2.name).to appear_before(ride_1.name)
     expect(ride_1.name).to appear_before(ride_4.name)
   end
+
+  # Story 3 - Add a Ride to a Mechanic
+  # As a user,
+  # When I go to a mechanics show page
+  # I see a form to add a ride to their workload
+  # When I fill in that field with an id of an existing ride and hit submit
+  # I’m taken back to that mechanic's show page
+  # And I see the name of that newly added ride on this mechanics show page
+  it 'has a form to add a ride to their workload' do
+    mech_1 = Mechanic.create!(name: 'Antonio King', years_of_experience: 8)
+
+    ride_1 = mech_1.rides.create!(name: 'Octothrope', thrill_rating: 7, open: true)
+    ride_2 = mech_1.rides.create!(name: 'Sidewinder', thrill_rating: 9, open: true)
+    ride_3 = mech_1.rides.create!(name: 'Clown Maze', thrill_rating: 2, open: false)
+    ride_4 = mech_1.rides.create!(name: 'Twister', thrill_rating: 6, open: true)
+    ride_5 = Ride.create!(name: 'Gremlins', thrill_rating: 4, open: true)
+
+    visit "/mechanics/#{mech_1.id}"
+
+    expect(page).to have_content('Add a Ride to Workload')
+    expect(page).to have_button('Add Ride')
+  end
+
+  xit 'adds ride to mechanic show page' do
+    mech_1 = Mechanic.create!(name: 'Antonio King', years_of_experience: 8)
+
+    ride_1 = mech_1.rides.create!(name: 'Octothrope', thrill_rating: 7, open: true)
+    ride_2 = mech_1.rides.create!(name: 'Sidewinder', thrill_rating: 9, open: true)
+    ride_3 = mech_1.rides.create!(name: 'Clown Maze', thrill_rating: 2, open: false)
+    ride_4 = mech_1.rides.create!(name: 'Twister', thrill_rating: 6, open: true)
+    ride_5 = Ride.create!(name: 'Gremlins', thrill_rating: 4, open: true)
+
+    visit "/mechanics/#{mech_1.id}"
+
+    fill_in('Ride ID:', with: ride_5.id)
+    click_on('Add Ride')
+
+    expect(page).to have_content(ride_5.name)
+  end
 end
