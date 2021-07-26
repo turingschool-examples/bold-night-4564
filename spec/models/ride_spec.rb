@@ -18,5 +18,17 @@ RSpec.describe Ride do
         expect(Ride.open_rides).to eq(expected)
       end
     end
+
+    describe ':order_by_thrills' do
+      it 'orders rides by thrill rating in descending order' do
+        ride1 = Ride.create!(name: 'Ferris Wheel', thrill_rating: 3, open: true)
+        ride2 = Ride.create!(name: 'Roller Coaster', thrill_rating: 9, open: true)
+        ride3 = Ride.create!(name: 'Merry Go Round', thrill_rating: 6, open: true)
+
+        expected = [ride2, ride3, ride1]
+
+        expect(Ride.order_by_thrills).to eq(expected)
+      end
+    end
   end
 end
