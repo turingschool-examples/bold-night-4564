@@ -38,8 +38,8 @@ RSpec.describe 'Mechanics show page' do
     visit "/mechanics/#{@mech_1.id}"
     ride_4 = Ride.create!(name: 'Wiggle Bomb', thrill_rating: 15, open: true)
     
-    fill_in "Ride ID:", with: "#{ride_4.id}"
-    click_button "Add this Ride"
+    fill_in "Ride Id:", with: "#{ride_4.id}"
+    click_button "Submit"
 
     expect(current_path).to eq("/mechanics/#{@mech_1.id}")
     expect(page).to have_content("Wiggle Bomb")

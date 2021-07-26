@@ -15,9 +15,9 @@
 </section>
 
 <br><hr>
-<h2>Add a ride by ID</h2>
+<h2>Add a ride to workload:</h2>
 <%= form_with url: "/mechanics/#{@mechanic.id}/rides" do |f| %>
-  <%= f.label :ride_id, "Ride ID:" %>
+  <%= f.label :ride_id, "Ride Id:" %>
   <%= f.text_field :ride_id %>
-  <%= f.submit "Add this Ride" %>
+  <%= f.submit "Submit" %>
 <% end %>
