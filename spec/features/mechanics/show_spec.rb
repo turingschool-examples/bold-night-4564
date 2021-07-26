@@ -3,10 +3,10 @@ require "rails_helper"
 RSpec.describe 'Mechanics Show Page' do 
   before :each do 
     @mechanic1 = Mechanic.create!(name: "Jose", years_of_experience: 10)
-    @ride1 = Ride.create!(name: "twister", thrill_rating: 20, open: true)
-    @ride2 = Ride.create!(name: "mind-eraser", thrill_rating: 50, open: true)
-    @ride3 = Ride.create!(name: "broken carousel", thrill_rating: 2, open: false)
-    @ride4 = Ride.create!(name: "crazitown", thrill_rating: 100, open: true)
+    @ride1 = Ride.create!(name: "twister", thrill: 20, open: true)
+    @ride2 = Ride.create!(name: "mind-eraser", thrill: 50, open: true)
+    @ride3 = Ride.create!(name: "broken carousel", thrill: 2, open: false)
+    @ride4 = Ride.create!(name: "crazitown", thrill: 100, open: true)
     Maintenence.create!(ride_id: @ride1.id, mechanic_id: @mechanic1.id)
     Maintenence.create!(ride_id: @ride2.id, mechanic_id: @mechanic1.id)
     Maintenence.create!(ride_id: @ride3.id, mechanic_id: @mechanic1.id)
@@ -26,6 +26,7 @@ RSpec.describe 'Mechanics Show Page' do
     expect(page).to have_content("Rides Being Worked On:")
     expect(page).to have_content(@ride1.name)
     expect(page).to have_content(@ride2.name)
-  end
 
+    expect(@ride2.name).to appear_before(@ride1.name)
+  end
 end
