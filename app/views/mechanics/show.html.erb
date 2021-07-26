@@ -7,3 +7,11 @@
 <% @mechanic.rides.each do |ride|%>
   <p><%= ride.name %></p>
 <%end%>
+
+<section id='thrill'>
+  <h3>Open Rides</h3>
+
+  <% @mechanic.rides.open_thrill.each do |ride|%>
+    <p><%= ride.name%></p>
+  <%end%>
+</section>
