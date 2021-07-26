@@ -25,16 +25,20 @@ RSpec.describe "Mechanics show page" do
     expect(page).to_not have_content("Tunnel Vision")
   end
 
-
   it "all rides are listed by thrill rating descending order" do
     ride_4 = Ride.create!(name: "Medusa", thrill_rating: 7, open: true)
     maintenance_4 = Maintenance.create!(ride: ride_4, mechanic: @bob)
 
     visit "/mechanics/#{@bob.id}"
-    save_and_open_page
 
       expect(@ride_1.name).to appear_before(@ride_2.name)
       expect(ride_4.name).to appear_before(@ride_2.name)
       expect(@ride_1.name).to appear_before(ride_4.name)
   end
+
+  it "displays a form to add ride to mechanics workload" do
+    expect(page).to have_content("Assign Ride for #{@bob.name}: ")
+  end
+
+  it "I can fill it in with an existing ride ID and see it added"
 end
