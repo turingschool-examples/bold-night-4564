@@ -1,2 +1,9 @@
 <h1> <%= @mechanic.name %>'s Page </h1>
 <h3> Working with us for <%= @mechanic.years_of_experience %> years! </h3>
+
+<h2>Assigned Rides: </h2>
+<% @mechanic.rides.each do |ride| %>
+  <p><b><%= ride.name %></b></p>
+  <p><b><%= ride.thrill_rating %></b></p>
+  <p><b><%= ride.open %></b></p>
+<% end %>
