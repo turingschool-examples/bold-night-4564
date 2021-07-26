@@ -49,8 +49,26 @@ RSpec.describe 'Mechanics show page', type: :feature do
     fill_in :search, with: "#{@ride_6.id}"
     click_button "Add Ride"
 
+    save_and_open_page
     expect(page).to have_content(@ride_6.name)
     expect(@ride_6.name).to_not appear_before(@ride_4.name)
     expect(@ride_6.name).to appear_before("Add ride to credentials")
+  end
+
+  # User Story 3
+  it 'orders new ride appropriately' do
+    visit "/mechanics/#{@mechanic.id}"
+
+    expect(page).to have_content("Ride ID:")
+    expect(page).to have_button("Add Ride")
+
+    @ride_6 = Ride.create!(name: 'Tilt-a-Whirl', thrill_rating: 10, open: true)
+    fill_in :search, with: "#{@ride_6.id}"
+    click_button "Add Ride"
+
+    save_and_open_page
+    expect(page).to have_content(@ride_6.name)
+    expect(@ride_6.name).to appear_before(@ride_5.name)
+    expect(@ride_6.name).to appear_before(@ride_1.name)
   end
 end
