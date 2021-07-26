@@ -7,3 +7,10 @@
   <p>Thrill Rating: <%= ride.thrill_rating %></p>
   <p>Open: <%= ride.open %></p>
 <% end %>
+
+<p>Add a ride to mechanic's workload:</p>
+<%= form_with url: "/mechanics/#{@mechanics.id}", method: :post, local: true do |form| %>
+  <%= form.label :ride_id, 'ride ID' %>
+  <%= form.text_field :ride_id, required: true %>
+  <%= form.submit "Add ride" %>
+<% end %>
