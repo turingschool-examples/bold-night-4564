@@ -1,0 +1,13 @@
+<div id="attributes">
+  <h1><%= @amusement_park.name %></h1>
+  <h3>Admissions: $<%= @amusement_park.price %></h3>
+</div>
+
+<h3>Rides:</h3>
+<% @rides.each.with_index do |ride, index| %>
+  <div id="ride-<%= ride.id %>">
+    <p><%= index + 1 %>. <%= ride.name %></p>
+  </div>
+<% end %>
+
+<p><b>Average Thrill Rating of Rides: <%= @rides.average_thrill %>/10</b></p>

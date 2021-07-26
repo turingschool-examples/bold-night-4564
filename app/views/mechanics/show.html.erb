@@ -1,0 +1,18 @@
+<div id="attributes">
+  <h1><%= @mechanic.name %></h1>
+  <h3>Years of Experience: <%= @mechanic.years_of_experience %></h3>
+</div>
+
+<h3>Rides:</h3>
+<% @rides.each.with_index do |ride, index| %>
+  <div id="ride-<%= ride.id %>">
+    <p><%= index + 1 %>. <%= ride.name %></p>
+  </div>
+<% end %>
+
+<h3>Add Ride to Mechanic's Workload</h3>
+<%= form_with url: "/mechanics/#{@mechanic.id}", method: :patch, local: true do |f| %>
+  <%= f.label 'Ride id' %>
+  <%= f.text_field :ride_id %>
+  <%= f.submit 'Submit' %>
+<% end %>
