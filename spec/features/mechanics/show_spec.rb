@@ -2,13 +2,11 @@ require 'rails_helper'
 
 RSpec.describe 'The mechanics show page' do
   before(:each) do
-    Ride.destroy_all
-    Mechanic.destroy_all
-    WorkOrder.destroy_all
     @mechanic1 = Mechanic.create!(name: 'Joe Schmo', years_of_experience: 10)
     @mechanic2 = Mechanic.create!(name: 'Walter White', years_of_experience: 4)
 
     @disney = AmusementPark.create!(name: 'Disney World', price: 125)
+
     @ride1 = @disney.rides.create!(name: 'Ferris Wheel', thrill_rating: 4, open: true)
     @ride2 = @disney.rides.create!(name: 'Roller Coaster', thrill_rating: 10, open: true)
     @ride3 = @disney.rides.create!(name: 'Broken Gravitron', thrill_rating: 3, open: false)
@@ -54,7 +52,6 @@ RSpec.describe 'The mechanics show page' do
     click_on 'Submit'
 
     expect(current_path).to eq("/mechanics/#{@mechanic1.id}")
-    expect(page).to have_content("Carousel")
-
+    expect(page).to have_content("#{@ride4.name}")
   end
 end
