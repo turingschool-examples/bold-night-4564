@@ -38,4 +38,18 @@ RSpec.describe 'the mechanics index' do
     expect(first).to appear_before(mid)
     expect(mid).to appear_before(last)
   end
+
+  it 'submit form with ride id returns user to mechanic show page with new ride displayed' do
+    new_ride = Ride.create!(name: 'Flash', thrill_rating: 8, open: true)
+
+    visit "/mechanics/#{@mechanic_1.id}"
+
+    expect(page).to_not have_content(new_ride.name)
+
+    fill_in 'ride_id', with: "#{new_ride.id}"
+    click_button 'Submit'
+
+    expect(current_path).to eq("/mechanics/#{@mechanic_1.id}")
+    expect(page).to have_content(new_ride.name)
+  end
 end
