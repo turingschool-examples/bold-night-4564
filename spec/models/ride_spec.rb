@@ -1,8 +1,8 @@
 require "rails_helper"
 
-RSpec.describe Mechanic do
+RSpec.describe Ride do
   describe 'has relationships' do
     it { should have_many :mechanic_rides }
-    it { should have_many(:rides).through(:mechanic_rides) }
+    it { should have_many(:mechanics).through(:mechanic_rides) }
   end
 end
