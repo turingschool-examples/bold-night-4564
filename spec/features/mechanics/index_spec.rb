@@ -1,10 +1,14 @@
 require 'rails_helper'
 RSpec.describe 'shows the index feature page of the mechanics' do
   before :each do
-    @ride1 = Ride.create!(name: "Mind Eraser", thrill_rating: 7, open: true)
-    @ride2 = Ride.create!(name: "Side Winder", thrill_rating: 4, open: true)
-    @ride3 = Ride.create!(name: "Tower O Doom", thrill_rating: 10, open: true)
-    @ride4 = Ride.create!(name: "Shake Rattle and Roll", thrill_rating: 1, open: false)
+    @amusement_park1 = AmusementPark.create!(name: "Elitches", price_of_admission: 50)
+    @amusement_park2 = AmusementPark.create!(name: "Lake Side", price_of_admission: 30)
+  
+    @ride1 = Ride.create!(name: "Mind Eraser", thrill_rating: 7, open: true, amusement_parks_id: @amusement_park1.id)
+    @ride2 = Ride.create!(name: "Side Winder", thrill_rating: 4, open: true, amusement_parks_id: @amusement_park1.id)
+    @ride3 = Ride.create!(name: "Tower O Doom", thrill_rating: 10, open: true, amusement_parks_id: @amusement_park1.id)
+    @ride4 = Ride.create!(name: "Shake Rattle and Roll", thrill_rating: 1, open: false, amusement_parks_id: @amusement_park1.id)
+    @ride5 = Ride.create!(name: "Twister 2 ", thrill_rating: 9, open: true, amusement_parks_id: @amusement_park1.id)
 
     @mechanic1 = Mechanic.create!(name: "Bob", years_of_experience: 7)
     @mechanic2 = Mechanic.create!(name: "Jim", years_of_experience: 1)
