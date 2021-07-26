@@ -1,4 +1,6 @@
 class Mechanic < ApplicationRecord
+  validates :name, presence: true
+
   has_many :maintenances
   has_many :rides, through: :maintenances
 

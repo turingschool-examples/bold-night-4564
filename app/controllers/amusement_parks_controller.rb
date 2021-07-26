@@ -1,4 +1,4 @@
-class RidesController < ApplicationController
+class AmusementParksController < ApplicationController
 
   def show
   end
