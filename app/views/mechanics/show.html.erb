@@ -1,0 +1,9 @@
+<h1><%= @mechanic.name %></h1>
+<p>Years of Experience: <%= @mechanic.years_of_experience %></p>
+<h2>Work Orders for Open Rides:</h2>
+<% @mechanic.rides.each do |ride| %>
+  <% if ride.open == true %>
+    <h3><%= ride.name %></h3>
+    <p><%= ride.thrill_rating %></p>
+    <% end %>
+<% end %>
