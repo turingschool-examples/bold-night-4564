@@ -5,7 +5,7 @@ class ApplicationRecord < ActiveRecord::Base
     average(column)
   end
 
-  def self.sort_by(column, order)
+  def self.sort_by_input(column, order)
     order("#{column}": :"#{order}")
   end
 end

@@ -17,9 +17,9 @@ describe 'class methods' do
     @ride3 = @jim.rides.create(name: "Mantis", thrill_rating: 6, open: false)
     @ride4 = Ride.create(name: "Jemini", thrill_rating: 7, open: true)
   end
-  describe 'sort_by' do
+  describe 'sort_by_input' do
     it 'sorts a table by given column name in order given' do
-      expect(Ride.sort_by("thrill_rating", "desc")).to eq([@ride2, @ride1, @ride4, @ride3])
+      expect(Ride.sort_by_input("thrill_rating", "desc")).to eq([@ride2, @ride1, @ride4, @ride3])
     end
   end
   describe 'average_by' do
