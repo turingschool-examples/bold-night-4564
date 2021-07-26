@@ -28,6 +28,7 @@ RSpec.describe 'mechanic show page' do
     ride_1 = Ride.create!(name: "Steve French", thrill_rating: 5, open: true)
     ride_2 = Ride.create!(name: "Z-town", thrill_rating: 9, open: true)
     ride_3 = Ride.create!(name: "Creek", thrill_rating: 6, open: false)
+    ride_4 = Ride.create!(name: "Jail", thrill_rating: 10, open: true)
 
     maint_1 = Maintenence.create!(mechanic: mech_1, ride: ride_1)
     maint_2 = Maintenence.create!(mechanic: mech_1, ride: ride_2)
@@ -36,5 +37,11 @@ RSpec.describe 'mechanic show page' do
 
     expect(page).to have_content("Add a ride to mechanic's workload:")
     expect(page).to have_button("Add ride")
+
+    fill_in 'ride_id', with: "#{ride_4.id}"
+    click_button 'Add ride'
+
+    expect(current_path).to eq("/mechanics/#{mech_1.id}")
+    expect(page).to have_content(ride_4.name)
   end
 end
