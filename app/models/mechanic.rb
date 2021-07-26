@@ -5,4 +5,12 @@ class Mechanic < ApplicationRecord
   def self.average_years_of_experience
     count.positive? ? average(:years_of_experience) : 0
   end
+
+  def open_rides
+    rides.open
+  end
+
+  def closed_rides
+    rides.closed
+  end
 end

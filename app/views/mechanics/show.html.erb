@@ -1,0 +1,11 @@
+<p>
+  Name: <%= @mechanic.name %><br>
+  Years of Experience: <%= @mechanic.years_of_experience %>
+</p>
+
+<p>
+  Rides:<br>
+  <% @mechanic.open_rides.order_by_most_thrilling.each do |ride| %>
+    <%= ride.name %><br>
+  <% end %>
+</p>

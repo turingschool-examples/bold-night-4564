@@ -16,9 +16,7 @@ RSpec.describe '/mechanics/index.html.erb' do
       end
 
       it 'displays a list of all mechanics names and their years experience' do
-        mechanics = [jim, john, joe]
-
-        mechanics.each do |mechanic|
+        Mechanic.all.each do |mechanic|
           expect(page).to have_content(mechanic.name)
           expect(page).to have_content(mechanic.years_of_experience)
         end
