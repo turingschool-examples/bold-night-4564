@@ -1,5 +1,16 @@
+<div class="container" text-align="center" align="center">
 <h1>All Rides</h1>
 <% @rides.each do |ride| %>
-  <h2><%= ride.name  %></h2>
-  <h2>Thrill Rating:<%= ride.thrill_rating  %></h2>
+
+
+<div class="container" text-align="center" align="center">
+<div class="card" style="width: 25rem;">
+  <div class="card-body">
+    <h5 class="card-title"><%= ride.name  %></h5>
+    <p class="card-text">Thrill Rating:<%= ride.thrill_rating  %></p>
+    <a href="/amusement_parks" class="btn btn-warning btn-sm">Amusement Parks</a>
+    <%= link_to ride.name, "/rides/#{ride.id}", class: "btn btn-info btn-sm" %>
+  </div>
+</div>
+<br/>
 <% end %>

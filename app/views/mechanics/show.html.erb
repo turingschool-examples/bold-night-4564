@@ -1,15 +1,24 @@
-<h3><%= @mechanic.name  %></h3>
 
-<h4>Years of experience: <%= @mechanic.years_of_experience  %></h4>
-<h6> All open rides for this mechanic, ordered by thrill rating:  </h6>
+<div class="container" text-align="center" align="center">
+  <div class="card" style="width: 25rem;">
+    <div class="card-body">
+      <h5 class="card-title"><%= @mechanic.name  %></h5>
+    <p class="card-text">Years of experience: <%= @mechanic.years_of_experience  %></p>
+    <h6> All open rides for this mechanic<br>(ordered by thrill rating) </h6>
   <% @rides.each do |ride|  %>
     <ul>
-    <li><%= ride.name %></li></ul>
-<% end %>
+    <%= link_to ride.name, "/rides/#{ride.id}", class: "btn btn-info btn-sm" %></li></ul>
+  <% end %>
 
 <h3><%="Add a ride for #{@mechanic.name}"%></h3>
 <%= form_with url: "/mechanics/#{@mechanic.id}/work_orders", local: true do |f| %>
-  <%= f.label :ride_id %>
+  <%= f.label :ride_id, "Ride ID number" %>
   <%= f.number_field :ride_id %>
   <%= f.submit 'Submit' %>
 <% end %>
+
+
+
+</div>
+</div>
+<br/>

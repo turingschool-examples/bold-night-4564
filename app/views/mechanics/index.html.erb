@@ -1,7 +1,15 @@
+<div class="container" text-align="center" align="center">
 <h2>All Mechanics</h2>
 <% @mechanics.each do |mechanic| %>
+<div class="container" text-align="center" align="center">
+<div class="card" style="width: 25rem;">
+  <div class="card-body">
+    <h5 class="card-title"><%= link_to mechanic.name, "/mechanics/#{mechanic.id}", class: "btn btn-primary" %></h5>
+    <p class="card-text"> <%= "#{mechanic.name}s years experience: #{mechanic.years_of_experience}" %></p>
+    <p class="card-text">All mechanics average years experience: <%= @average_years_experience %></p>
+    <a href="/amusement_parks" class="btn btn-warning btn-sm">Amusement Parks</a>
 
-<h3><%= link_to mechanic.name, "/mechanics/#{mechanic.id}", class: "btn btn-primary" %></h3>
-<p>Years of experience for <%="#{mechanic.name}"%>: <%= mechanic.years_of_experience  %></p>
+  </div>
+</div>
+<br/>
 <% end %>
-<h4>Average years experience: <%= @average_years_experience %> </h4>
