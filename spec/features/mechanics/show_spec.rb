@@ -15,9 +15,22 @@ RSpec.describe 'mechanic show page' do
       expect(page).to have_content(mechanic.years_of_experience)
       expect(page).to have_content(ride1.name)
       expect(page).to have_content(ride2.name)
+    end
 
-      #     Story 2 - Mechanic Show Page
-      #
+    it 'only shows rides that are open and are listed by thrill rating in descending order' do
+      mechanic = create(:mechanic)
+      ride1 = Ride.create!(name: 'Ferris Wheel', thrill_rating: 3, open: true)
+      ride2 = Ride.create!(name: 'Roller Coaster', thrill_rating: 6, open: true)
+      ride3 = Ride.create!(name: 'Merry Go Round', thrill_rating: 6, open: false)
+      mechanic_ride1 = MechanicRide.create(ride_id: ride1.id, mechanic_id: mechanic.id)
+      mechanic_ride2 = MechanicRide.create(ride_id: ride2.id, mechanic_id: mechanic.id)
+      mechanic_ride3 = MechanicRide.create(ride_id: ride3.id, mechanic_id: mechanic.id)
+
+      visit "/mechanics/#{mechanic.id}"
+
+      expect(page).to_not have_content(ride3.name)
+      expect(ride2.name).to appear_before(ride1.name)
+
       # As a user,
       # When I visit a mechanic show page
       # I see their name, years of experience, and the names of all rides they’re working on
