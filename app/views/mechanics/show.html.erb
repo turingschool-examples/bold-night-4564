@@ -8,3 +8,14 @@
     <p>Ride: <b><%= ride.name %></b></p>
   <% end %>
 <% end %>
+
+<h3>Add a ride to workload:</h3>
+
+<%= form_with model: @mechanic_ride, method: :post, local: true do |f| %>
+  <%= f.label :ride_id, 'Ride Id:' %>
+  <%= f.number_field :ride_id %>
+
+  <%= f.hidden_field :mechanic_id, :value => @mechanic.id %>
+
+  <%= f.submit 'Submit' %>
+<% end %>
