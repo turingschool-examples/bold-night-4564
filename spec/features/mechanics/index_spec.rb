@@ -6,7 +6,7 @@ RSpec.describe 'The Mechanics Index Page' do
     @john = Mechanic.create!(name: "John", years_of_experience: 4)
     @bob = Mechanic.create!(name: "Bob", years_of_experience: 5)
 
-    visit mechanics_path
+    visit '/mechanics'
   end
 
   # Story 1 - Mechanic Index Page
