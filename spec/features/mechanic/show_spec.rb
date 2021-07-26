@@ -21,4 +21,20 @@ RSpec.describe 'mechanic show page' do
     expect(ride_2.name).to appear_before(ride_1.name)
     expect(page).to_not have_content(ride_3.name)
   end
+
+  it 'can add a ride to mechanic' do
+    mech_1 = Mechanic.create!(name: 'Bubbles', years_of_experience: 5)
+
+    ride_1 = Ride.create!(name: "Steve French", thrill_rating: 5, open: true)
+    ride_2 = Ride.create!(name: "Z-town", thrill_rating: 9, open: true)
+    ride_3 = Ride.create!(name: "Creek", thrill_rating: 6, open: false)
+
+    maint_1 = Maintenence.create!(mechanic: mech_1, ride: ride_1)
+    maint_2 = Maintenence.create!(mechanic: mech_1, ride: ride_2)
+
+    visit "/mechanics/#{mech_1.id}"
+
+    expect(page).to have_content("Add a ride to mechanic's workload:")
+    expect(page).to have_button("Add ride")
+  end
 end
