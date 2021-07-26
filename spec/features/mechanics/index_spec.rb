@@ -14,8 +14,25 @@ RSpec.describe 'The Mechanics index page' do
       expect(page).to have_content('All Mechanics')
     end
 
-    it "displays a list of all mechanic's names and ther years of experience"
+    it "displays a list of all mechanic's names and their years of experience" do
+      mechanic1 = Mechanic.create!(name: 'Han Solo', years_of_experience: 12)
+      mechanic2 = Mechanic.create!(name: 'Leia Organa', years_of_experience: 14)
 
-    it "displays the average years of experience across all mechanics"
+      visit "/mechanics"
+
+      expect(page).to have_content(mechanic1.name)
+      expect(page).to have_content(mechanic1.years_of_experience)
+      expect(page).to have_content(mechanic2.name)
+      expect(page).to have_content(mechanic2.years_of_experience)
+    end
+
+    it "displays the average years of experience across all mechanics" do
+      mechanic1 = Mechanic.create!(name: 'Han Solo', years_of_experience: 12)
+      mechanic2 = Mechanic.create!(name: 'Leia Organa', years_of_experience: 14)
+
+      visit "/mechanics"
+save_and_open_page
+      expect(page).to have_content('Average years of experience across all mechanics: 13')
+    end
   end
 end
