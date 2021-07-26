@@ -5,3 +5,10 @@
     <%= ride.name %>
   </h6>
 <% end %>
+
+<h3><%="Add a ride for #{@mechanic.name}"%></h3>
+<%= form_with url: "/mechanics/#{@mechanic.id}/work_orders", local: true do |f| %>
+  <%= f.label :ride_id %>
+  <%= f.number_field :ride_id %>
+  <%= f.submit 'Submit' %>
+<% end %>

@@ -2,6 +2,9 @@ require 'rails_helper'
 
 RSpec.describe 'The mechanics show page' do
   before(:each) do
+    Ride.destroy_all
+    Mechanic.destroy_all
+    WorkOrder.destroy_all
     @mechanic1 = Mechanic.create!(name: 'Joe Schmo', years_of_experience: 10)
     @mechanic2 = Mechanic.create!(name: 'Walter White', years_of_experience: 4)
 
@@ -21,25 +24,36 @@ RSpec.describe 'The mechanics show page' do
   it 'displays the mechanics name, years of experience' do
     expect(page).to have_content(@mechanic1.name)
     expect(page).to have_content(@mechanic1.years_of_experience)
-
   end
 
   it 'displays the names of all open rides they are working on' do
     expect(page).to have_content(@ride1.name)
     expect(page).to have_content(@ride2.name)
-
   end
 
-  it 'does not display rides for other mechanics or closed rides' do
-
+  it 'does not display rides for other mechanics' do
     expect(page).to_not have_content(@ride4.name)
   end
 
-  it 'only displays rides that are open' do
+  it 'only displays associated rides that are open' do
     expect(page).to_not have_content(@ride3.name)
   end
 
-  it 'displays the rides ordered by thrill rating descending order' do
+  it 'displays the rides ordered by thrill rating in descending order' do
     expect(@ride2.name).to appear_before(@ride1.name)
+  end
+
+  it 'displays a form to add a ride to the mechanics workload' do
+    expect(page).to have_content('Add a ride')
+    expect(page).to have_button('Submit')
+  end
+
+  it 'actually lets you fill it out with a new ride id and it adds to their workload' do
+    fill_in :ride_id, with: "#{@ride4.id}"
+    click_on 'Submit'
+
+    expect(current_path).to eq("/mechanics/#{@mechanic1.id}")
+    expect(page).to have_content("Carousel")
+
   end
 end
