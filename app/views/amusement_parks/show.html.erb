@@ -5,7 +5,7 @@
 
 <h4>All Rides:</h4>
 <% @rides.order_by_name.each do |ride| %>
-  <p><%= ride.name %><p>
+  <p><%= @rides.order_by_name.index(ride) + 1 %>. <%= ride.name %><p>
 <% end %>
 
 <p>Average Thrill Rating of Rides: <%= @rides.average_thrill_rating %>/10</p>
