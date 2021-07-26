@@ -10,7 +10,12 @@ RSpec.describe 'the amusement park show' do
     @ride_4 = @mechanic_1.rides.create!(name: 'WonderWoman', thrill_rating: 5, open: true, amusement_park_id: @amusement_park.id)
   end
 
-  it 'displays attributes' do 
+  it 'displays attributes' do
     visit "/amusement_parks/#{@amusement_park.id}"
+
+    within("#attributes") do
+      expect(page).to have_content(@amusement_park.name)
+      expect(page).to have_content(@amusement_park.price)
+    end
   end
 end
