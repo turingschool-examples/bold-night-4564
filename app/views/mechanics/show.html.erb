@@ -1,0 +1,18 @@
+<h1>Hi, my name is <%= @mechanic.name %> </h1>
+<h3>My credentials:</h3>
+<p>Years of Experience: <%= @mechanic.years_of_experience %><p>
+<h4>Open Rides:</h4>
+  <p><% @rides.each do |ride| %>
+    <b><%= ride.name %></b>
+    <br>
+    Thrill Rating: <%= ride.thrill_rating %>
+    <br>
+    <br>
+  <% end %></p>
+
+  <h3>Add ride to credentials</h3>
+    <%= form_with url: "/mechanics/#{@mechanic.id}", method: :get, local: true do |f| %>
+      <%= f.label :search, "Ride ID: " %>
+      <%= f.text_field :search %>
+      <%= f.submit "Add Ride" %>
+    <% end %>
