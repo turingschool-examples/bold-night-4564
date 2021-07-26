@@ -44,33 +44,14 @@ RSpec.describe 'mechanic show page' do
 
       visit "/mechanics/#{mechanic.id}"
       expect(page).to_not have_content(ride3.name)
-      
+
       fill_in 'ride_id', with: ride3.id
       click_on "Submit"
-
+      save_and_open_page
       expect(current_path).to eq("/mechanics/#{mechanic.id}")
       expect(page).to have_content(ride3.name)
       expect(ride3.name).to appear_before(ride2.name)
       expect(ride2.name).to appear_before(ride1.name)
-# As a user,
-# When I go to a mechanics show page
-# I see a form to add a ride to their workload
-# When I fill in that field with an id of an existing ride and hit submit
-# I’m taken back to that mechanic's show page
-# And I see the name of that newly added ride on this mechanics show page
-#
-# Ex:
-# Mechanic: Kara Smith
-# Years of Experience: 11
-#
-# Current rides they’re working on:
-# The Frog Hopper
-# Fahrenheit
-# The Kiss Raise
-#
-# Add a ride to workload:
-# Ride Id: _pretend_this_is_a_textfield_
-# Submit
     end
   end
 end
