@@ -27,5 +27,11 @@ RSpec.describe Ride do
         expect(Ride.order_by_alpha).to eq([@ride_2, @ride_3, @ride_1, @ride_4])
       end
     end
+
+    describe '.average_thrill' do
+      it 'returns the average thrill rating of rides' do
+        expect(Ride.average_thrill).to eq(6.5)
+      end
+    end 
   end
 end
