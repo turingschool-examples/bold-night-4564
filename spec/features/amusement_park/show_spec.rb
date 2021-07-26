@@ -26,10 +26,10 @@ RSpec.describe 'the amusement park show page' do
     ride4 = park.rides.create!(name: 'Pirate Ship', thrill_rating: 8, open: true)
 
     visit "/amusement_parks/#{park.id}"
-    
+
+    save_and_open_page
     expect(page).to have_content(park.name)
     expect(page).to have_content(park.admission)
-    expect(page).to have_content("Rides:")
     expect(page).to have_content("Rides:")
     expect(ride1.name).to appear_before(ride2.name)
     expect(ride2.name).to appear_before(ride4.name)
