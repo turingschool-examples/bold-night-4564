@@ -2,11 +2,12 @@
 <h3> Working with us for <%= @mechanic.years_of_experience %> years! </h3>
 
 <h2>Assigned Rides: </h2>
-<% @mechanic.rides.each do |ride| %>
+<% @mechanic.order_by_thrill_rating.each do |ride| %>
   <% if ride.open == true %>
-    <p><b><%= ride.name %></b></p>
-    <p><b><%= ride.thrill_rating %></b></p>
-    <p><b><%= ride.open %></b></p>
+    <b><%= ride.name %></b><br>
+    <b><%= ride.thrill_rating %></b><br>
+    <b><%= ride.open %></b><br>
+    <br>
   <% else %>
   <% end %>
 <% end %>
