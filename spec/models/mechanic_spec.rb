@@ -29,12 +29,14 @@ RSpec.describe Mechanic do
 
   describe 'instance methods' do
     let!(:jim) { Mechanic.create!(name: 'Jim', years_of_experience: 10) }
+    let!(:six_flags) { AmusementPark.create!(name: 'Six Flags',price: 10) }
 
     let!(:frog_hopper) do
       jim.rides.create!(
         name: "The Frog Hopper",
         thrill_rating: 4,
         open: true,
+        amusement_park_id: six_flags.id
       )
     end
 
@@ -43,6 +45,7 @@ RSpec.describe Mechanic do
         name: "Fahrenheit",
         thrill_rating: 10,
         open: true,
+        amusement_park_id: six_flags.id
       )
     end
 
@@ -51,6 +54,7 @@ RSpec.describe Mechanic do
         name: "The Kiss Raise",
         thrill_rating: 2,
         open: false,
+        amusement_park_id: six_flags.id
       )
     end
 

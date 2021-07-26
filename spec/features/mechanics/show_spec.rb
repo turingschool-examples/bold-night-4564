@@ -7,11 +7,19 @@ RSpec.describe '/mechanics/show.html.erb' do
   let!(:john) { Mechanic.create!(name: 'John', years_of_experience: 5) }
   let!(:joe) { Mechanic.create!(name: 'Joe', years_of_experience: 3) }
 
+  let!(:six_flags) do
+    AmusementPark.create!(
+      name: 'Six Flags',
+      price: 10
+    )
+  end
+  
   let!(:frog_hopper) do
     jim.rides.create!(
       name: "The Frog Hopper",
       thrill_rating: 4,
       open: true,
+      amusement_park_id: six_flags.id
     )
   end
 
@@ -20,6 +28,7 @@ RSpec.describe '/mechanics/show.html.erb' do
       name: "Fahrenheit",
       thrill_rating: 10,
       open: true,
+      amusement_park_id: six_flags.id
     )
   end
 
@@ -28,6 +37,7 @@ RSpec.describe '/mechanics/show.html.erb' do
       name: "The Kiss Raise",
       thrill_rating: 2,
       open: false,
+      amusement_park_id: six_flags.id
     )
   end
 
@@ -35,7 +45,8 @@ RSpec.describe '/mechanics/show.html.erb' do
     Ride.create!(
       name: 'Ferris Wheel',
       thrill_rating: 1,
-      open: true
+      open: true,
+      amusement_park_id: six_flags.id
     )
   end
 
