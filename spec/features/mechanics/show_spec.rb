@@ -2,12 +2,13 @@ require 'rails_helper'
 
 RSpec.describe 'mechanic show page' do
   it 'lists name, years of exp, and names of rides they work on' do
+    park_1 = Park.create!(name: 'Sunny Vale', admission: 10)
     mech_1 = Mechanic.create!(name: 'Bubbles', years_of_experience: 5)
     mech_2 = Mechanic.create!(name: 'Ricky', years_of_experience: 15)
 
-    ride_1 = Ride.create!(name: "Steve French", thrill_rating: 5, open: true)
-    ride_2 = Ride.create!(name: "Z-town", thrill_rating: 9, open: true)
-    ride_3 = Ride.create!(name: "Creek", thrill_rating: 6, open: false)
+    ride_1 = Ride.create!(name: "Steve French", thrill_rating: 5, open: true, park_id: park_1.id)
+    ride_2 = Ride.create!(name: "Z-town", thrill_rating: 9, open: true, park_id: park_1.id)
+    ride_3 = Ride.create!(name: "Creek", thrill_rating: 6, open: false, park_id: park_1.id)
 
 
     maint_1 = Maintenence.create!(mechanic: mech_1, ride: ride_1)
@@ -23,12 +24,13 @@ RSpec.describe 'mechanic show page' do
   end
 
   it 'can add a ride to mechanic' do
+    park_1 = Park.create!(name: 'Sunny Vale', admission: 10)
     mech_1 = Mechanic.create!(name: 'Bubbles', years_of_experience: 5)
 
-    ride_1 = Ride.create!(name: "Steve French", thrill_rating: 5, open: true)
-    ride_2 = Ride.create!(name: "Z-town", thrill_rating: 9, open: true)
-    ride_3 = Ride.create!(name: "Creek", thrill_rating: 6, open: false)
-    ride_4 = Ride.create!(name: "Jail", thrill_rating: 10, open: true)
+    ride_1 = Ride.create!(name: "Steve French", thrill_rating: 5, open: true, park_id: park_1.id)
+    ride_2 = Ride.create!(name: "Z-town", thrill_rating: 9, open: true, park_id: park_1.id)
+    ride_3 = Ride.create!(name: "Creek", thrill_rating: 6, open: false, park_id: park_1.id)
+    ride_4 = Ride.create!(name: "Jail", thrill_rating: 10, open: true, park_id: park_1.id)
 
     maint_1 = Maintenence.create!(mechanic: mech_1, ride: ride_1)
     maint_2 = Maintenence.create!(mechanic: mech_1, ride: ride_2)
