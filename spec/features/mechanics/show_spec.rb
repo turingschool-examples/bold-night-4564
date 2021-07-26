@@ -26,6 +26,15 @@ RSpec.describe "Mechanics show page" do
   end
 
 
-  it "all rides are listed by thrill rating descending order"
+  it "all rides are listed by thrill rating descending order" do
+    ride_4 = Ride.create!(name: "Medusa", thrill_rating: 7, open: true)
+    maintenance_4 = Maintenance.create!(ride: ride_4, mechanic: @bob)
 
+    visit "/mechanics/#{@bob.id}"
+    save_and_open_page
+
+      expect(@ride_1.name).to appear_before(@ride_2.name)
+      expect(ride_4.name).to appear_before(@ride_2.name)
+      expect(@ride_1.name).to appear_before(ride_4.name)
+  end
 end
