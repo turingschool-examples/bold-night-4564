@@ -56,6 +56,12 @@ RSpec.describe Ride do
 
         expect(Ride.average_thrill_rating).to eq(6.0)
       end
+
+      it 'will return zero if amusement park has no rides' do
+        amusement_park = AmusementPark.create!(name: 'Six Flags', admission_price: 25)
+
+        expect(Ride.average_thrill_rating).to eq(0.0)
+      end
     end
   end
 end
