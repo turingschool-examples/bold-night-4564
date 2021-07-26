@@ -14,7 +14,7 @@ RSpec.describe 'Mechanics show page', type: :feature do
   # User Story 2
   it 'displays mechanic attributes' do
     visit "/mechanics/#{@mechanic.id}"
-    save_and_open_page
+
     expect(page).to have_content(@mechanic.name)
     expect(page).to have_content(@mechanic.years_of_experience)
   end

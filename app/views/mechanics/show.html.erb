@@ -1,3 +1,11 @@
 <h1>Hi, my name is <%= @mechanic.name %> </h1>
 <h3>My credentials:</h3>
 <p>Years of Experience: <%= @mechanic.years_of_experience %><p>
+<h4>Open Rides:</h4>
+  <p><% @rides.each do |ride| %>
+    <b><%= ride.name %></b>
+    <br>
+    Thrill Rating: <%= ride.thrill_rating %>
+    <br>
+    <br>
+  <% end %></p>
