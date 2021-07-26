@@ -1,4 +1,5 @@
 <div class="container" text-align="center" align="center">
+  <br/>
 <% @parks.each do |park| %>
-<%= link_to park.name, "/amusement_parks/#{park.id}", class: "btn btn-primary"%>
+<%= link_to park.name, "/amusement_parks/#{park.id}", class: "btn btn-primary"%><br/><br/>
 <% end %>
