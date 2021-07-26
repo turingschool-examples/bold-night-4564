@@ -22,6 +22,20 @@ RSpec.describe Mechanic do
         expect(Mechanic.average_experience).to eq(7.3)
       end
     end
+
+    describe '.add_ride' do
+      it 'finds mechanic and ride instance and adds ride to the mechanic' do
+        new_ride = Ride.create!(name: 'Flash', thrill_rating: 8, open: true)
+
+        expect(@mechanic_1.rides).to_not include(new_ride)
+
+        Mechanic.add_ride(@mechanic_1.id, new_ride.id)
+
+        updated_mechanic = Mechanic.find(@mechanic_1.id)
+
+        expect(updated_mechanic.rides).to include(new_ride)
+      end
+    end
   end
 
   describe 'instance methods' do
