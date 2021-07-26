@@ -10,10 +10,11 @@ RSpec.describe 'the mechanic show page' do
   # And the rides are listed by thrill rating in descending order (most thrills first)
   it 'lists a mechanics name, years_of_experience, and the names of all rides they are working on (only open rides and listed in descending order of thrill rating)' do
     mech1 = Mechanic.create!(name: 'Kara Smith', years_of_experience: 10)
-    ride1 = Ride.create!(name: 'Ferris Wheel', thrill_rating: 4, open: true)
-    ride2 = Ride.create!(name: 'Kamikaze', thrill_rating: 10, open: true)
-    ride3 = Ride.create!(name: 'Swings', thrill_rating: 5, open: false)
-    ride4 = Ride.create!(name: 'Pirate Ship', thrill_rating: 8, open: true)
+    six_flags = AmusementPark.create!(name: 'Six Flags', admission: 50)
+    ride1 = six_flags.rides.create!(name: 'Ferris Wheel', thrill_rating: 4, open: true)
+    ride2 = six_flags.rides.create!(name: 'Kamikaze', thrill_rating: 10, open: true)
+    ride3 = six_flags.rides.create!(name: 'Swings', thrill_rating: 5, open: false)
+    ride4 = six_flags.rides.create!(name: 'Pirate Ship', thrill_rating: 8, open: true)
     MechanicRide.create!(mechanic: mech1, ride: ride1)
     MechanicRide.create!(mechanic: mech1, ride: ride2)
     MechanicRide.create!(mechanic: mech1, ride: ride3)
@@ -39,10 +40,11 @@ RSpec.describe 'the mechanic show page' do
     # I’m taken back to that mechanic's show page
     # And I see the name of that newly added ride on this mechanics show page
     mech1 = Mechanic.create!(name: 'Kara Smith', years_of_experience: 10)
-    ride1 = Ride.create!(name: 'Ferris Wheel', thrill_rating: 4, open: true)
-    ride2 = Ride.create!(name: 'Kamikaze', thrill_rating: 10, open: true)
-    ride3 = Ride.create!(name: 'Pirate Ship', thrill_rating: 8, open: true)
-    ride4 = Ride.create!(name: 'Swings', thrill_rating: 5, open: true)
+    six_flags = AmusementPark.create!(name: 'Six Flags', admission: 50)
+    ride1 = six_flags.rides.create!(name: 'Ferris Wheel', thrill_rating: 4, open: true)
+    ride2 = six_flags.rides.create!(name: 'Kamikaze', thrill_rating: 10, open: true)
+    ride3 = six_flags.rides.create!(name: 'Pirate Ship', thrill_rating: 8, open: true)
+    ride4 = six_flags.rides.create!(name: 'Swings', thrill_rating: 5, open: true)
     MechanicRide.create!(mechanic: mech1, ride: ride1)
     MechanicRide.create!(mechanic: mech1, ride: ride2)
     MechanicRide.create!(mechanic: mech1, ride: ride3)
@@ -55,7 +57,7 @@ RSpec.describe 'the mechanic show page' do
     fill_in('ride_id', with: "#{ride4.id}")
     click_button('Add Ride!')
 
-    save_and_open_page
+    # save_and_open_page
     expect(current_path).to eq("/mechanics/#{mech1.id}")
     expect(page).to have_content(ride4.name)
   end

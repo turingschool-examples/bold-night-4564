@@ -18,10 +18,11 @@ RSpec.describe Mechanic do
     describe 'instance methods' do
       it 'can list open rides mechanic is working on' do
         mech1 = Mechanic.create!(name: 'Kara Smith', years_of_experience: 10)
-        ride1 = Ride.create!(name: 'Ferris Wheel', thrill_rating: 4, open: true)
-        ride2 = Ride.create!(name: 'Kamikaze', thrill_rating: 10, open: true)
-        ride3 = Ride.create!(name: 'Swings', thrill_rating: 5, open: false)
-        ride4 = Ride.create!(name: 'Pirate Ship', thrill_rating: 8, open: true)
+        six_flags = AmusementPark.create!(name: 'Six Flags', admission: 50)
+        ride1 = six_flags.rides.create!(name: 'Ferris Wheel', thrill_rating: 4, open: true)
+        ride2 = six_flags.rides.create!(name: 'Kamikaze', thrill_rating: 10, open: true)
+        ride3 = six_flags.rides.create!(name: 'Swings', thrill_rating: 5, open: false)
+        ride4 = six_flags.rides.create!(name: 'Pirate Ship', thrill_rating: 8, open: true)
         MechanicRide.create!(mechanic: mech1, ride: ride1)
         MechanicRide.create!(mechanic: mech1, ride: ride2)
         MechanicRide.create!(mechanic: mech1, ride: ride3)
@@ -33,10 +34,11 @@ RSpec.describe Mechanic do
 
       it 'can list open rides mechanic is working on in descending order by thrill rating' do
         mech1 = Mechanic.create!(name: 'Kara Smith', years_of_experience: 10)
-        ride1 = Ride.create!(name: 'Ferris Wheel', thrill_rating: 4, open: true)
-        ride2 = Ride.create!(name: 'Kamikaze', thrill_rating: 10, open: true)
-        ride3 = Ride.create!(name: 'Swings', thrill_rating: 5, open: false)
-        ride4 = Ride.create!(name: 'Pirate Ship', thrill_rating: 8, open: true)
+        six_flags = AmusementPark.create!(name: 'Six Flags', admission: 50)
+        ride1 = six_flags.rides.create!(name: 'Ferris Wheel', thrill_rating: 4, open: true)
+        ride2 = six_flags.rides.create!(name: 'Kamikaze', thrill_rating: 10, open: true)
+        ride3 = six_flags.rides.create!(name: 'Swings', thrill_rating: 5, open: false)
+        ride4 = six_flags.rides.create!(name: 'Pirate Ship', thrill_rating: 8, open: true)
         MechanicRide.create!(mechanic: mech1, ride: ride1)
         MechanicRide.create!(mechanic: mech1, ride: ride2)
         MechanicRide.create!(mechanic: mech1, ride: ride3)
