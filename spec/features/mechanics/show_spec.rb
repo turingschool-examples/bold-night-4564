@@ -2,7 +2,7 @@ require 'rails_helper'
 
 RSpec.describe '/mechanics/show.html.erb' do
   Mechanic.destroy_all
-  
+
   describe 'as a user' do
     describe 'when I visit the mechanics show page' do
       let!(:jim) { Mechanic.create!(name: 'Jim', years_of_experience: 10) }
@@ -57,6 +57,39 @@ RSpec.describe '/mechanics/show.html.erb' do
 
       it 'displays the ride names by thrill rating in descending order' do
         expect(fahrenheit.name).to appear_before(frog_hopper.name)
+      end
+
+      describe 'I see a form to add a ride to their workload' do
+        it 'displays the form' do
+          expect(page).to have_content('Add a Ride to Workload')
+          expect(page).to have_field(:ride_id)
+          expect(page).to have_button('Submit')
+        end
+
+        describe 'When I fill in the form with an existing ride id and hit '\
+                 'submit' do
+          let!(:ferris_wheel) do
+            Ride.create!(
+              name: 'Ferris Wheel',
+              thrill_rating: 1,
+              open: true
+            )
+          end
+
+          before do
+            fill_in :ride_id, with: "#{ferris_wheel.id}"
+            click_button 'Submit'
+          end
+
+          it 'returns to the mechanics show page' do
+            expect(current_path).to eq("/mechanics/#{jim.id}")
+          end
+
+          it 'displays the name of the newly added ride' do
+            save_and_open_page
+            expect(page).to have_content(ferris_wheel.name)
+          end
+        end
       end
     end
   end
