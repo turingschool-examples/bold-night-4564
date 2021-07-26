@@ -18,12 +18,7 @@ RSpec.describe Ride do
       @ride4 = Ride.create(name: "Jemini", thrill_rating: 7, open: true)
 
     end
-
-    describe 'sort_by_thrill' do
-      it 'sorts rides by thrill thrill_rating' do
-        expect(Ride.sort_by_thrill).to eq([@ride2, @ride1, @ride4, @ride3])
-      end
-    end
+    
     describe 'is_open' do
       it 'returns only rides that are open' do
         expect(Ride.is_open).to eq([@ride1, @ride2, @ride4])
