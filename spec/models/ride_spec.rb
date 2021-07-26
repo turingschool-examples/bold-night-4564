@@ -41,12 +41,6 @@ RSpec.describe Ride do
       end
     end
 
-    describe '.closed' do
-      it 'returns all the closed rides (rides that are not open)' do
-        expect(Ride.closed).to eq(closed_rides)
-      end
-    end
-
     describe '.order_by_most_thrilling' do
       it 'orders the rides by most thrilling' do
         expected = [fahrenheit, frog_hopper, kiss_raise]

@@ -63,11 +63,5 @@ RSpec.describe Mechanic do
         expect(jim.open_rides).to eq(open_rides)
       end
     end
-
-    describe '#closed_rides' do
-      it 'returns all closed rides for a mechanic' do
-        expect(jim.closed_rides).to eq(closed_rides)
-      end
-    end
   end
 end

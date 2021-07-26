@@ -9,8 +9,4 @@ class Mechanic < ApplicationRecord
   def open_rides
     rides.open
   end
-
-  def closed_rides
-    rides.closed
-  end
 end

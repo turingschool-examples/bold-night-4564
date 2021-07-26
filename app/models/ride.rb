@@ -5,11 +5,7 @@ class Ride < ApplicationRecord
   def self.open
     where(open: true)
   end
-
-  def self.closed
-    where(open: false)
-  end
-
+  
   def self.order_by_most_thrilling
     order('thrill_rating desc')
   end
