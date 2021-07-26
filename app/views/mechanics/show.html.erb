@@ -13,3 +13,11 @@
     <p>Thrill Rating: <%= ride.thrill_rating %></p>
   <% end %>
 </section>
+
+<br><hr>
+<h2>Add a ride by ID</h2>
+<%= form_with url: "/mechanics/#{@mechanic.id}/rides" do |f| %>
+  <%= f.label :ride_id, "Ride ID:" %>
+  <%= f.text_field :ride_id %>
+  <%= f.submit "Add this Ride" %>
+<% end %>
