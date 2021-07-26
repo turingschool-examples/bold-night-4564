@@ -33,4 +33,27 @@ RSpec.describe 'Mechanic show page' do
     expect(page).to_not have_content(ride_3.name)
     expect(ride_4.name).to appear_before(ride_1.name)
   end
+
+  # Story 3 - Add a Ride to a Mechanic
+  #
+  # As a user,
+  # When I go to a mechanics show page
+  # I see a form to add a ride to their workload
+  # When I fill in that field with an id of an existing ride and hit submit
+  # I’m taken back to that mechanic's show page
+  # And I see the name of that newly added ride on this mechanics show page
+  it 'has a form to add a ride for a mechanics workload' do
+    mechanic = Mechanic.create!(name: 'Jamison O', years_of_experience: 10)
+    ride = Ride.create!(name: 'Carousel', thrill_rating: 2, open: true)
+
+    visit "/mechanics/#{mechanic.id}"
+
+    expect(page).to have_content('Add a ride for a mechanic:')
+
+    fill_in :ride_id, with: ride.id
+    click_button 'Submit'
+
+    expect(current_path).to eq("/mechanics/#{mechanic.id}")
+    expect(page).to have_content(ride.name)
+  end
 end

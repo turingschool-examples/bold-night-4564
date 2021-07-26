@@ -5,3 +5,10 @@
 <% @mechanic.open_rides_by_thrill_rating.each do |ride| %>
   <%= ride.name %>
 <% end %>
+
+<h2>Add a ride for a mechanic:</h2>
+<%= form_with url: "/mechanics/#{@mechanic.id}/workloads", local: true, method: :post do |form| %>
+  <%= form.label :ride_id %>
+  <%= form.number_field :ride_id %>
+  <%= form.submit 'Submit' %>
+<% end %>
