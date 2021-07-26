@@ -25,14 +25,16 @@ RSpec.describe Mechanic do
 
   describe 'instance methods' do
     before :each do
+      @park_1 = AmusementPark.create!(name: 'Disney World', price_of_admission: 75)
+
       @mechanic_1 = Mechanic.create!(name: 'Robert', years_of_experience: 27)
 
-      @ride_1 = Ride.create!(name: 'Big Thunder', thrill_rating: 8, open: true)
-      @ride_2 = Ride.create!(name: 'Mine Train', thrill_rating: 2, open: true)
-      @ride_3 = Ride.create!(name: 'Space Mountain', thrill_rating: 7, open: false)
-      @ride_4 = Ride.create!(name: 'The Barnstormer', thrill_rating: 9, open: true)
-      @ride_5 = Ride.create!(name: 'Wildlife Express', thrill_rating: 5, open: false)
-      @ride_6 = Ride.create!(name: 'Laugh Floor', thrill_rating: 6, open: true)
+      @ride_1 = @park_1.rides.create!(name: 'Big Thunder', thrill_rating: 8, open: true)
+      @ride_2 = @park_1.rides.create!(name: 'Mine Train', thrill_rating: 2, open: true)
+      @ride_3 = @park_1.rides.create!(name: 'Space Mountain', thrill_rating: 7, open: false)
+      @ride_4 = @park_1.rides.create!(name: 'The Barnstormer', thrill_rating: 9, open: true)
+      @ride_5 = @park_1.rides.create!(name: 'Wildlife Express', thrill_rating: 5, open: false)
+      @ride_6 = @park_1.rides.create!(name: 'Laugh Floor', thrill_rating: 6, open: true)
 
       RideMechanic.create!(mechanic: @mechanic_1, ride: @ride_1)
       RideMechanic.create!(mechanic: @mechanic_1, ride: @ride_2)
