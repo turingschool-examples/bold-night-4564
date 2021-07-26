@@ -6,3 +6,11 @@
 <% @open_rides.order_by_thrills.each do |ride| %>
   <p>Ride Name: <%= ride.name %></p>
 <% end %>
+
+<h4>Add a Ride to this Mechanic</h4>
+
+<%= form_with url: "/mechanics/#{@mechanic.id}", method: :post, local: true do |form| %>
+  <%= form.label :ride_id %>
+  <%= form.number_field :ride_id %>
+  <%= form.submit "Submit" %>
+<% end %>
