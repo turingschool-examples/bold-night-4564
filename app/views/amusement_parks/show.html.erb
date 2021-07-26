@@ -1,11 +1,17 @@
-<h1><%= @park.name  %></h1>
-<h3>Price: <%= number_to_currency(@park.price, precision:2) %></h3>
-<% @alpha.each do |ride| %>
-<ul>
-  <li><%= link_to ride.name, "/rides/#{ride.id}", class: "btn btn-info" %></li>
-  Thrill Rating for <%= "#{ride.name}" %>: <%= ride.thrill_rating %>
-</ul>
-<% end %>
-<h6>Average Thrill Rating:
-  <%= @park.average_thrill_rating %>/10
-</h6>
+
+<div class="container" text-align="center" align="center">
+<div class="card" style="width: 25rem;">
+  <div class="card-body">
+    <h5 class="card-title"><%= @park.name  %></h5>
+    <p class="card-text">  Price: <%= number_to_currency(@park.price, precision:2) %> </p>
+    <% @alpha.each do |ride| %>
+    <p class="card-text">  Thrill Rating for <%= "#{ride.name}" %>: <%= ride.thrill_rating %></p>
+    <%= link_to ride.name, "/rides/#{ride.id}", class: "btn btn-info" %>
+    <% end %>
+    <br><br/>
+    <p class="card-text"><strong>  Average Thrill Rating:
+      <%= @park.average_thrill_rating %>/10 </strong></p>
+
+    <a href="/rides" class="btn btn-success btn-sm">Back to rides</a>
+  </div>
+</div>
