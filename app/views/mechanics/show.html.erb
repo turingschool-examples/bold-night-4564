@@ -9,3 +9,10 @@
     <br>
     <br>
   <% end %></p>
+
+  <h3>Add ride to credentials</h3>
+    <%= form_with url: "/mechanics/#{@mechanic.id}", method: :get, local: true do |f| %>
+      <%= f.label :search, "Ride ID: " %>
+      <%= f.text_field :search %>
+      <%= f.submit "Add Ride" %>
+    <% end %>

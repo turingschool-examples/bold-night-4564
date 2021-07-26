@@ -30,10 +30,27 @@ RSpec.describe 'Mechanics show page', type: :feature do
     expect(page).to have_content(@ride_5.name)
   end
 
+  # User Story 2
   it 'orders open rides in descending order of thrill rating' do
     visit "/mechanics/#{@mechanic.id}"
 
     expect(@ride_5.name).to appear_before(@ride_1.name)
     expect(@ride_1.name).to appear_before(@ride_4.name)
+  end
+
+  # User Story 3
+  it 'renders a form to add an existing ride by id' do
+    visit "/mechanics/#{@mechanic.id}"
+
+    expect(page).to have_content("Ride ID:")
+    expect(page).to have_button("Add Ride")
+
+    @ride_6 = Ride.create!(name: 'Tilt-a-Whirl', thrill_rating: 4, open: true)
+    fill_in :search, with: "#{@ride_6.id}"
+    click_button "Add Ride"
+
+    expect(page).to have_content(@ride_6.name)
+    expect(@ride_6.name).to_not appear_before(@ride_4.name)
+    expect(@ride_6.name).to appear_before("Add ride to credentials")
   end
 end
