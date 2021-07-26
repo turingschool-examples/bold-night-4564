@@ -5,4 +5,8 @@ class Ride < ApplicationRecord
   def self.open_rides
     where(open:true)
   end
+
+  def self.high_to_low_thrills
+    order('thrill_rating DESC')
+  end
 end
