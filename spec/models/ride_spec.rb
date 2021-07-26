@@ -1,5 +1,8 @@
 require 'rails_helper'
 
 RSpec.describe Ride, type: :model do
-  pending "add some examples to (or delete) #{__FILE__}"
+  describe 'relationships' do
+    it {should have_many :ride_mechanics}
+    it {should have_many(:mechanics).through(:ride_mechanics)}
+  end
 end
