@@ -24,4 +24,14 @@ RSpec.describe 'Mechanic Show Page' do
   it 'rides are listed by thrill rating in descending order' do
     expect(@ride_1.name).to appear_before(@ride_3.name)
   end
+
+  it 'can add a new ride to work on' do
+    ride_4 = Ride.create!(name: 'Poison', thrill_rating: 7, open: true)
+
+    fill_in(:ride_id, with: "#{ride_4.id}")
+    click_button('Submit')
+
+    expect(current_path).to eq("/mechanics/#{@mechanic.id}")
+    expect(page).to have_content(ride_4.name)
+  end
 end
