@@ -7,6 +7,7 @@ RSpec.describe 'Mechanic Show' do
     @ride_1 = @mechanic.rides.create!(name: 'Whiplash', thrill_rating: 8, open: true)
     @ride_2 = @mechanic.rides.create!(name: 'Tea Cups', thrill_rating: 10, open: false)
     @ride_3 = @mechanic.rides.create!(name: 'Halfpipe', thrill_rating: 6, open: true)
+    @ride_4 = Ride.create!(name: 'Superman', thrill_rating: 7, open: true)
 
     visit "/mechanics/#{@mechanic.id}"
   end
@@ -50,23 +51,16 @@ RSpec.describe 'Mechanic Show' do
       # Add a ride to workload:
       # Ride Id: _pretend_this_is_a_textfield_
       # Submit
-    it '' do
-      mechanic = Mechanic.create!(name: 'Dee', years_of_experience: 4)  
-    
-      ride_1 = mechanic.rides.create!(name: 'Whiplash', thrill_rating: 8, open: true)
-      ride_2 = mechanic.rides.create!(name: 'Tea Cups', thrill_rating: 10, open: false)
-      ride_3 = mechanic.rides.create!(name: 'Halfpipe', thrill_rating: 6, open: true)
+    it 'has a form to add rides to a mechanic' do
       
-      ride_4 = Ride.create!(id: 20, name: 'Superman', thrill_rating: 7, open: true)
+      expect(page).to_not have_content(@ride_4.name)
 
-      visit "/mechanics/#{mechanic.id}"
-      
-      expect(page).to_not have_content(ride_4.name)
-
-      fill_in 'ID', with: 20
+      fill_in 'ride_id', with: @ride_4.id
       click_on('Submit')
+
+      expect(current_path).to eq("/mechanics/#{@mechanic.id}")
       
-      expect(page).to have_content(ride_4.name)
+      expect(page).to have_content(@ride_4.name)
     end
   end  
 end
