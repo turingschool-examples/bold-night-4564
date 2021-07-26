@@ -1,6 +1,2 @@
-class RidessController < ApplicationController
-
-  def index
-  end
-
+class MaintenancesController < ApplicationController
 end
