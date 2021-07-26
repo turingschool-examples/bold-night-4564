@@ -33,5 +33,29 @@ RSpec.describe Ride do
         expect(Ride.order_by_thrills).to eq(expected)
       end
     end
+
+    describe ':order_by_name' do
+      it 'orders rides by name in ascending order' do
+        amusement_park = AmusementPark.create!(name: 'Six Flags', admission_price: 25)
+        ride1 = Ride.create!(name: 'Ferris Wheel', thrill_rating: 3, open: true, amusement_park_id: amusement_park.id)
+        ride2 = Ride.create!(name: 'Roller Coaster', thrill_rating: 9, open: true, amusement_park_id: amusement_park.id)
+        ride3 = Ride.create!(name: 'Merry Go Round', thrill_rating: 6, open: true, amusement_park_id: amusement_park.id)
+
+        expected = [ride1, ride3, ride2]
+
+        expect(Ride.order_by_name).to eq(expected)
+      end
+    end
+
+    describe ':average_thrill_rating' do
+      it 'returns the average thrill rating of all rides' do
+        amusement_park = AmusementPark.create!(name: 'Six Flags', admission_price: 25)
+        ride1 = Ride.create!(name: 'Ferris Wheel', thrill_rating: 3, open: true, amusement_park_id: amusement_park.id)
+        ride2 = Ride.create!(name: 'Roller Coaster', thrill_rating: 9, open: true, amusement_park_id: amusement_park.id)
+        ride3 = Ride.create!(name: 'Merry Go Round', thrill_rating: 6, open: true, amusement_park_id: amusement_park.id)
+
+        expect(Ride.average_thrill_rating).to eq(6)
+      end
+    end
   end
 end
