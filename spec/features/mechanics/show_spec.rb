@@ -1,6 +1,6 @@
 require "rails_helper"
 
-RSpec.describe 'the mechanics index' do
+RSpec.describe 'the mechanics show' do
   before(:each) do
     @amusement_park = AmusementPark.create!(name: 'Six Flags', price: 50)
     @mechanic_1 = Mechanic.create!(name: 'Nick McIntyre', years_of_experience: 10)
