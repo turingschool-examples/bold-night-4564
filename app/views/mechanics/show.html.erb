@@ -8,3 +8,9 @@
   <p><%= ride.name %></p>
 <% end %>
 </br>
+<p>Add a ride to workload:</p>
+<%= form_with url:"/mechanics/#{@mechanic.id}/ride_mechanics", local: true do |f| %>
+  <%= f.label :ride_id, "Ride Id: " %>
+  <%= f.number_field :ride_id %>
+  <%= f.submit 'Submit' %>
+<% end %>
