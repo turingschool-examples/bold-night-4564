@@ -17,10 +17,11 @@ RSpec.describe 'Mechanic show page' do
 
   it 'displays names of all the open rides this mechanic is working on ordered by thrill rating (most thrills first)' do
     mechanic = Mechanic.create!(name: 'Jamison O', years_of_experience: 10)
-    ride_1 = Ride.create!(name: 'Ferris Wheel', thrill_rating: 5, open: true)
-    ride_2 = Ride.create!(name: 'Busted Ferris Wheel', thrill_rating: 5, open: false)
-    ride_3 = Ride.create!(name: 'Carousel', thrill_rating: 2, open: true)
-    ride_4 = Ride.create!(name: 'Roller Coaster', thrill_rating: 10, open: true)
+    park = Park.create!(name: 'Six Flags', price: 10)
+    ride_1 = park.rides.create!(name: 'Ferris Wheel', thrill_rating: 5, open: true)
+    ride_2 = park.rides.create!(name: 'Busted Ferris Wheel', thrill_rating: 5, open: false)
+    ride_3 = park.rides.create!(name: 'Carousel', thrill_rating: 2, open: true)
+    ride_4 = park.rides.create!(name: 'Roller Coaster', thrill_rating: 10, open: true)
     Workload.create!(ride: ride_1, mechanic: mechanic)
     Workload.create!(ride: ride_2, mechanic: mechanic)
     Workload.create!(ride: ride_4, mechanic: mechanic)
@@ -44,7 +45,8 @@ RSpec.describe 'Mechanic show page' do
   # And I see the name of that newly added ride on this mechanics show page
   it 'has a form to add a ride for a mechanics workload' do
     mechanic = Mechanic.create!(name: 'Jamison O', years_of_experience: 10)
-    ride = Ride.create!(name: 'Carousel', thrill_rating: 2, open: true)
+    park = Park.create!(name: 'Six Flags', price: 10)
+    ride = park.rides.create!(name: 'Carousel', thrill_rating: 2, open: true)
 
     visit "/mechanics/#{mechanic.id}"
 
