@@ -5,4 +5,8 @@ class Mechanic < ApplicationRecord
   def self.avg_years_exp
     average(:years_of_experience)
   end
+
+  def open_rides_by_thrill_desc
+    rides.where(open: true).order(thrill_rating: :desc)
+  end
 end
