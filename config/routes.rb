@@ -3,4 +3,6 @@ Rails.application.routes.draw do
   resources :mechanics, only: [:index, :show] do
     resources :mech_rides, only: [:create]
   end
+
+  resources :parks, only: [:show]
 end
