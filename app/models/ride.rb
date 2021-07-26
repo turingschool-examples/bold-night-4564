@@ -1,7 +1,8 @@
 class Ride < ApplicationRecord
+  belongs_to :amusement_park
+  
   has_many :mechanic_rides, :dependent => :destroy
   has_many :mechanics, through: :mechanic_rides
-  belongs_to :amusement_park
 
   def self.open
     where(open: true)
