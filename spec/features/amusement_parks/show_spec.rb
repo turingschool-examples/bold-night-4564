@@ -1,21 +1,31 @@
 require 'rails_helper'
 
 RSpec.describe 'Amusement Park show page' do
-  xit 'shows name and price of admission for park' do
-    visit "amusement_parks/#{@park_1.id}"
-
+  before :each do
+    @park_1 = AmusementPark.create!(name: 'Blips and Chitz', admission_price: 30.0)
+    @ride_1 = @park_1.rides.create!(name: 'The Whirly Dirly', thrill_rating: 10, open: true)
+    @ride_2 = @park_1.rides.create!(name: 'Frankenpants', thrill_rating: 20, open: false)
+    @ride_3 = @park_1.rides.create!(name: 'Vomit World', thrill_rating: 30, open: true)
   end
-  # As a visitor,
-  # When I visit an amusement park’s show page
-  # I see the name and price of admissions for that amusement park
 
-  xit 'shows rides in park in alphabetical order' do
+  it 'shows name and price of admission for park' do
     visit "amusement_parks/#{@park_1.id}"
+    expect(page).to have_content('Blips and Chitz')
+    expect(page).to have_content('Price of admission: $30.00')
   end
-  # And I see the names of all the rides that are at that theme park listed in alphabetical order
+
+  it 'shows rides in park in alphabetical order' do
+    visit "amusement_parks/#{@park_1.id}"
+    save_and_open_page
+    within('#rides') do
+      expect(@ride_2.name).to appear_before(@ride_1.name)
+      expect(@ride_1.name).to appear_before(@ride_3.name)
+    end
+  end
 
   xit 'shows avg thrill rating on page' do
     visit "amusement_parks/#{@park_1.id}"
+    expect(page).to have_content
   end
   # And I see the average thrill rating of this amusement park’s rides
   # Ex: Hershey Park
