@@ -46,7 +46,7 @@ RSpec.describe Mechanic do
       maint_2 = Maintenence.create!(mechanic: mech_1, ride: ride_2)
       maint_3 = Maintenence.create!(mechanic: mech_1, ride: ride_3)
 
-      ex
+      expect(mech_1.order_by_open_thrill).to eq([ride_2, ride_1])
     end
   end
 end
