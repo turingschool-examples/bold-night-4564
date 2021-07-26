@@ -29,4 +29,17 @@ RSpec.describe 'Mechanics Show Page' do
 
     expect(@ride2.name).to appear_before(@ride1.name)
   end
+
+  it 'can add a ride to their workload' do 
+    expect(page).to have_no_content(@ride4.name)
+    expect(page).to have_content('Add A Ride')
+
+    fill_in :ride_id, with: "#{@ride4.id}"
+
+    click_button "Submit" 
+
+    expect(current_path).to eq("/mechanics/#{@mechanic1.id}")
+
+    expect(page).to have_content(@ride4.name)
+  end
 end
