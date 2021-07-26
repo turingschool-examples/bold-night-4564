@@ -11,7 +11,6 @@ class MechanicsController < ApplicationController
   def add_ride
     mechanic = Mechanic.find(params[:id])  
     ride = Ride.find(params[:ride_id])
-    # require 'pry'; binding.pry
     if ride.present?
       mechanic.rides << ride   
     end
