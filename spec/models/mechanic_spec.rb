@@ -10,7 +10,6 @@ RSpec.describe Mechanic do
     describe '.average_years_of_experience' do
       context 'when there are no mechanics' do
         it 'returns the average years of experience' do
-          Mechanic.destroy_all
           expect(Mechanic.average_years_of_experience).to eq(0)
         end
       end

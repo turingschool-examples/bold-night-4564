@@ -1,8 +1,6 @@
 require 'rails_helper'
 
 RSpec.describe '/mechanics/show.html.erb' do
-  Mechanic.destroy_all
-
   let!(:jim) { Mechanic.create!(name: 'Jim', years_of_experience: 10) }
   let!(:john) { Mechanic.create!(name: 'John', years_of_experience: 5) }
   let!(:joe) { Mechanic.create!(name: 'Joe', years_of_experience: 3) }
@@ -13,7 +11,7 @@ RSpec.describe '/mechanics/show.html.erb' do
       price: 10
     )
   end
-  
+
   let!(:frog_hopper) do
     jim.rides.create!(
       name: "The Frog Hopper",
