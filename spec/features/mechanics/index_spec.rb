@@ -2,10 +2,10 @@ require 'rails_helper'
 
 RSpec.describe "Mechanics index page" do
   before(:each) do
-    @bob = Mechanic.new(name: "Bob", years_experience: 12)
-    @sarah = Mechanic.new(name: "Sarah", years_experience: 11)
+    @bob = Mechanic.new(name: "Bob", years_of_experience: 12)
+    @sarah = Mechanic.new(name: "Sarah", years_of_experience: 11)
 
-    visist "/mechanics"
+    visit "/mechanics"
   end
 
   it "should link to page" do
