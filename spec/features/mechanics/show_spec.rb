@@ -6,7 +6,7 @@ RSpec.describe "Mechanics show page" do
 
     @ride_1 = Ride.create!(name: "Sky Rocket", thrill_rating: 10, open: true)
     @ride_2 = Ride.create!(name: "Splash Valley", thrill_rating: 3, open: true)
-    @ride_3 = Ride.create!(name: "Tunnel Vision", thrill_rating: 6, open: true)
+    @ride_3 = Ride.create!(name: "Tunnel Vision", thrill_rating: 6, open: false)
 
     @maintenance_1 = Maintenance.create!(ride: @ride_1, mechanic: @bob)
     @maintenance_2 = Maintenance.create!(ride: @ride_2, mechanic: @bob)
@@ -19,10 +19,10 @@ RSpec.describe "Mechanics show page" do
     expect(page).to have_content(12)
   end
 
-  it "lists all the rides that they are working on" do
+  it "lists all the rides that they are working on and are open" do
     expect(page).to have_content("Sky Rocket")
     expect(page).to have_content("Splash Valley")
-    expect(page).to have_content("Tunnel Vision")
+    expect(page).to_not have_content("Tunnel Vision")
   end
 
 

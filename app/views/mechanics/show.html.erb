@@ -3,7 +3,10 @@
 
 <h2>Assigned Rides: </h2>
 <% @mechanic.rides.each do |ride| %>
-  <p><b><%= ride.name %></b></p>
-  <p><b><%= ride.thrill_rating %></b></p>
-  <p><b><%= ride.open %></b></p>
+  <% if ride.open == true %>
+    <p><b><%= ride.name %></b></p>
+    <p><b><%= ride.thrill_rating %></b></p>
+    <p><b><%= ride.open %></b></p>
+  <% else %>
+  <% end %>
 <% end %>
