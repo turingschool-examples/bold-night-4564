@@ -6,6 +6,6 @@ class Mechanic < ApplicationRecord
   has_many :rides, through: :ride_mechanics
 
   def self.average_years_of_experience
-    average(:years_of_experience).round(1)
+    average(:years_of_experience).to_f.round(1)
   end
 end
