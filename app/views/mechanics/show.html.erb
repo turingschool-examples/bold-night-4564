@@ -8,3 +8,10 @@
     <p><%= ride.thrill_rating %></p>
   <% end %>
 </div>
+
+<div id="add_ride">
+  <%= bootstrap_form_tag url: "/mechanics/#{@mechanic.id}/mech_rides", method: :POST do |form| %>
+    <%= form.number_field :ride_id %>
+    <%= form.submit 'add ride to mechanic' %>
+  <% end %>
+</div>

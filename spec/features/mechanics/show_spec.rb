@@ -45,7 +45,19 @@ RSpec.describe 'the mechanics index page' do
   # When I fill in that field with an id of an existing ride and hit submit
   # I’m taken back to that mechanic's show page
   # And I see the name of that newly added ride on this mechanics show page
-  xit 'has a form to add a ride, when filled out, takes back to the mech show page where the new ride ' do
-
+  it 'has a form to add a ride, when filled out, takes back to the mech show page where the new ride ' do
+    #check that ride currently not in list
+    within "div#current_work" do
+      expect(page).to_not have_content(@ride4.name)
+    end
+    within "div#add_ride" do
+      fill_in 'ride_id', with: @ride4.id
+      click_on("commit")
+    end
+    #check path is correct and ride has been added to workload list
+    expect(current_path).to eq("/mechanics/#{@jim.id}")
+    within "div#current_work" do
+      expect(page).to have_content(@ride4.name)
+    end
   end
 end
