@@ -11,13 +11,12 @@ RSpec.describe 'The Mecahanic Show page' do
     @roller_coaster = Ride.create!(name: 'Roller Coaster', thrill_rating: 9, open: true)
     @carousel = Ride.create!(name: 'Carousel', thrill_rating: 3, open: true)
 
-
     WorkOrder.create!(mechanic: @tom, ride: @log_boat)
     WorkOrder.create!(mechanic: @tom, ride: @tea_cup)
     WorkOrder.create!(mechanic: @tom, ride: @tilt_a_whirl)
     WorkOrder.create!(mechanic: @tom, ride: @roller_coaster)
 
-    visit mechanic_path(@tom)
+    visit "/mechanics/#{@tom.id}"
   end
 
 # Story 2 - Mechanic Show Page
@@ -66,11 +65,11 @@ RSpec.describe 'The Mecahanic Show page' do
 
     expect(page).to have_content('Add a Ride to Workload:')
 
-    fill_in 'Ride ID', with: "#{@carousel.id}"
+    fill_in :ride_id, with: "#{@carousel.id}"
 
-    click_on 'Submit'
+    click_button 'Submit'
 
-    expect(current_path).to eq(mechanic_path(@tom))
+    expect(current_path).to eq("/mechanics/#{@tom.id}")
     expect(page).to have_content(@carousel.name)
   end
 end
