@@ -37,8 +37,16 @@ RSpec.describe "Mechanics show page" do
   end
 
   it "displays a form to add ride to mechanics workload" do
-    expect(page).to have_content("Assign Ride for #{@bob.name}: ")
+    expect(page).to have_content("Assign Ride to #{@bob.name}:")
   end
 
-  it "I can fill it in with an existing ride ID and see it added"
+  it "I can fill it in with an existing ride ID and see it added" do
+    ride_4 = Ride.create!(name: "Medusa", thrill_rating: 7, open: true)
+    fill_in :ride_id, with: "#{ride_4.id}"
+
+    click_button "Submit"
+
+    expect(current_path).to eq("/mechanics/#{@bob.id}")
+    expect(page).to have_content("Medusa")
+  end
 end
