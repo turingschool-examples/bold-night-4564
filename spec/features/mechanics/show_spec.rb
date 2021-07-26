@@ -9,6 +9,8 @@ RSpec.describe 'The Mecahanic Show page' do
     @tea_cup = Ride.create!(name: 'Tea Cup', thrill_rating: 2, open: false)
     @tilt_a_whirl = Ride.create!(name: 'Tilt-A-Whirl', thrill_rating: 4, open: true)
     @roller_coaster = Ride.create!(name: 'Roller Coaster', thrill_rating: 9, open: true)
+    @carousel = Ride.create!(name: 'Carousel', thrill_rating: 3, open: true)
+
 
     WorkOrder.create!(mechanic: @tom, ride: @log_boat)
     WorkOrder.create!(mechanic: @tom, ride: @tea_cup)
@@ -49,5 +51,26 @@ RSpec.describe 'The Mecahanic Show page' do
 
     expect(@roller_coaster.name).to appear_before(@log_boat.name)
     expect(@log_boat.name).to appear_before(@tilt_a_whirl.name)
+  end
+
+# Story 3 - Add a Ride to a Mechanic
+#
+# As a user,
+# When I go to a mechanics show page
+# I see a form to add a ride to their workload
+# When I fill in that field with an id of an existing ride and hit submit
+# I’m taken back to that mechanic's show page
+# And I see the name of that newly added ride on this mechanics show page
+
+  it 'has a form to add a new ride to their workload that redirects back to show page and displays the new ride' do
+
+    expect(page).to have_content('Add a Ride to Workload:')
+
+    fill_in 'Ride ID', with: "#{@carousel.id}"
+
+    click_on 'Submit'
+
+    expect(current_path).to eq(mechanic_path(@tom))
+    expect(page).to have_content(@carousel.name)
   end
 end
